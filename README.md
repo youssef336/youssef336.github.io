@@ -5,6 +5,11 @@
 </p>
 
 <p align="center">
+  <img src="docs/screens.jpg" alt="Screens" width="100%"/>
+  <br/><sub>Live site: youssef336.github.io</sub>
+</p>
+
+<p align="center">
   <a href="https://youssef336.github.io"><b>Live site</b></a> ·
   <a href="https://github.com/youssef336/portfolio/releases/tag/apps">APK downloads</a> ·
   <a href="cv/Youssef_Belal_CV.pdf">CV</a>
