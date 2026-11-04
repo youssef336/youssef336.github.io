@@ -23,6 +23,17 @@ It follows the system light/dark theme and works from phone width up.
 Sections: hero with CV download, experience, featured projects (Xspire / MysteryBag, Fruits Hub, StyleBox,
 Fashion Store), 12 open-source Flutter tools, more apps with APK downloads, skills, education and contact.
 
+## Roadmaps
+
+Two beginner-friendly learning roadmaps live on the site, each with Arabic and English video courses (free and paid,
+tagged), documentation links per topic, a practice project per phase and progress saved in the browser:
+
+- Data Analyst Roadmap: https://youssef336.github.io/data-analysis-roadmap/
+- Frappe / ERPNext Developer Roadmap: https://youssef336.github.io/frappe-roadmap/
+- Hub page listing both: https://youssef336.github.io/roadmaps/
+
+They share one stylesheet and script in `roadmaps/assets/` (light/dark theme, print styles, mobile layout).
+
 ## APKs
 
 The Android builds are attached to the [`apps` release](https://github.com/youssef336/portfolio/releases/tag/apps), not
@@ -41,7 +52,10 @@ portfolio/
 ├── styles.css   # layout, light/dark theme, responsive breakpoints
 ├── favicon.svg
 ├── cv/          # downloadable CV (PDF)
-└── images/      # project images and profile photo
+├── images/      # project images and profile photo
+├── roadmaps/    # roadmaps hub + shared assets (roadmap.css, roadmap.js)
+├── data-analysis-roadmap/   # Data Analyst roadmap page + og.png
+└── frappe-roadmap/          # Frappe / ERPNext roadmap page + og.png
 ```
 
 ## Run locally

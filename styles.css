@@ -394,6 +394,12 @@ h3 {
   font-size: 14px;
 }
 
+/* Roadmaps */
+.roadmaps .tool h3 {
+  font-family: inherit;
+  font-size: 16px;
+}
+
 /* More apps */
 .apps {
   display: grid;
