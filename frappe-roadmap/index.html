@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frappe / ERPNext Developer Roadmap</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --card: #161b22;
+      --card2: #1c2330;
+      --line: #2a323d;
+      --txt: #e6edf3;
+      --muted: #9aa7b4;
+      --chip: #21262d;
+      --chipbd: #30363d;
+      --yt: #ff3b30;
+      --docs: #3b82f6;
+      --p1: #f472b6;
+      --p2: #f59e0b;
+      --p3: #22d3ee;
+      --p4: #a78bfa;
+      --p5: #34d399;
+      --p6: #60a5fa;
+      --p7: #f87171;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      background: radial-gradient(1200px 600px at 20% -10%, #182031, transparent), var(--bg);
+      color: var(--txt);
+      font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+      line-height: 1.55;
+      padding: 0 16px 80px;
+    }
+
+    .wrap {
+      max-width: 1000px;
+      margin: 0 auto
+    }
+
+    header.top {
+      padding: 48px 0 8px;
+      text-align: center
+    }
+
+    header.top h1 {
+      font-size: clamp(28px, 5vw, 44px);
+      margin: 0 0 8px;
+      font-weight: 800;
+      background: linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent
+    }
+
+    header.top p {
+      color: var(--muted);
+      max-width: 640px;
+      margin: 6px auto;
+      font-size: 15px
+    }
+
+    .legend {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 18px auto 4px;
+      font-size: 13px;
+      color: var(--muted)
+    }
+
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      display: inline-block
+    }
+
+    .progwrap {
+      max-width: 1000px;
+      margin: 22px auto 30px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px
+    }
+
+    .progbar {
+      flex: 1;
+      height: 10px;
+      background: #0b0f14;
+      border-radius: 20px;
+      overflow: hidden
+    }
+
+    .progfill {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #34d399, #60a5fa);
+      transition: width .3s
+    }
+
+    .progtxt {
+      font-size: 13px;
+      color: var(--muted);
+      white-space: nowrap;
+      min-width: 120px;
+      text-align: right
+    }
+
+    .phase {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--pc, #60a5fa);
+      border-radius: 14px;
+      margin: 0 0 20px;
+      overflow: hidden
+    }
+
+    .phead {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 20px;
+      cursor: pointer;
+      user-select: none
+    }
+
+    .pnum {
+      flex: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 18px;
+      color: #0d1117;
+      background: var(--pc)
+    }
+
+    .ptitle {
+      flex: 1;
+      min-width: 0
+    }
+
+    .ptitle h2 {
+      margin: 0;
+      font-size: clamp(17px, 2.4vw, 21px);
+      font-weight: 700
+    }
+
+    .stars {
+      color: #f5c518;
+      font-size: 14px;
+      letter-spacing: 1px
+    }
+
+    .stars small {
+      color: var(--muted);
+      letter-spacing: 0
+    }
+
+    .chev {
+      flex: none;
+      color: var(--muted);
+      transition: transform .25s;
+      font-size: 14px
+    }
+
+    .phase.collapsed .chev {
+      transform: rotate(-90deg)
+    }
+
+    .pbody {
+      padding: 0 20px 22px;
+      border-top: 1px solid var(--line)
+    }
+
+    .phase.collapsed .pbody {
+      display: none
+    }
+
+    .goal {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 14px 0 18px;
+      padding: 10px 14px;
+      background: var(--card2);
+      border-radius: 10px;
+      border: 1px solid var(--line)
+    }
+
+    .goal b {
+      color: var(--txt)
+    }
+
+    .grp {
+      margin: 16px 0
+    }
+
+    .grp h3 {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      margin: 0 0 10px;
+      font-weight: 700
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px
+    }
+
+    a.chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--chip);
+      border: 1px solid var(--chipbd);
+      color: var(--txt);
+      text-decoration: none;
+      padding: 7px 12px;
+      border-radius: 20px;
+      font-size: 13.5px;
+      transition: .15s
+    }
+
+    a.chip:hover {
+      border-color: var(--docs);
+      background: #1b2432;
+      transform: translateY(-1px)
+    }
+
+    a.chip::before {
+      content: "↗";
+      color: var(--docs);
+      font-size: 11px
+    }
+
+    .videos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 16px 0 4px
+    }
+
+    a.ytbtn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 10px 16px;
+      border-radius: 10px;
+      color: #fff;
+      background: linear-gradient(180deg, #ff5147, #e60c00);
+      border: 1px solid #ff6b63;
+      box-shadow: 0 4px 14px rgba(230, 12, 0, .25);
+      transition: .15s
+    }
+
+    a.ytbtn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(230, 12, 0, .4)
+    }
+
+    a.ytbtn .yi {
+      width: 22px;
+      height: 16px;
+      background: #fff;
+      border-radius: 4px;
+      position: relative;
+      flex: none
+    }
+
+    a.ytbtn .yi::after {
+      content: "";
+      position: absolute;
+      left: 8px;
+      top: 4px;
+      border-left: 8px solid #e60c00;
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent
+    }
+
+    a.ytbtn.ar {
+      background: linear-gradient(180deg, #22c55e, #15803d);
+      border-color: #4ade80;
+      box-shadow: 0 4px 14px rgba(21, 128, 61, .28)
+    }
+
+    a.ytbtn.ar .yi::after {
+      border-left-color: #15803d
+    }
+
+    a.doclink {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 10px 16px;
+      border-radius: 10px;
+      color: var(--txt);
+      background: var(--card2);
+      border: 1px solid var(--docs)
+    }
+
+    a.doclink:hover {
+      background: #1b2838
+    }
+
+    .tag {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 20px;
+      background: #0b0f14;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      margin-left: 2px
+    }
+
+    .note {
+      margin: 18px 0 4px;
+      padding: 16px 18px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, #141b26, #11161f)
+    }
+
+    .note.ar {
+      direction: rtl;
+      text-align: right;
+      font-family: "Segoe UI", "Tahoma", sans-serif;
+      font-size: 15px
+    }
+
+    .note h4 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      color: var(--p4)
+    }
+
+    .note.tip h4 {
+      color: #fbbf24
+    }
+
+    .note.proj {
+      background: linear-gradient(180deg, #10241c, #0e1a16);
+      border-color: #1f5c46
+    }
+
+    .note.proj h4 {
+      color: #34d399
+    }
+
+    .note.proj .ptutorial {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 8px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      color: #0d1117;
+      background: #34d399;
+      padding: 7px 13px;
+      border-radius: 8px
+    }
+
+    .note.proj .ptutorial:hover {
+      background: #2bbd85
+    }
+
+    .note.proj .ptutorial.ar {
+      background: #22c55e
+    }
+
+    .note.proj .ptutorial.eng {
+      background: #60a5fa
+    }
+
+    .note.proj .tutrow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px
+    }
+
+    .note p {
+      margin: 8px 0;
+      color: #cdd6e0
+    }
+
+    .note ul {
+      margin: 8px 0;
+      padding-inline-start: 22px;
+      color: #cdd6e0
+    }
+
+    .note b {
+      color: #fff
+    }
+
+    ol.reading {
+      margin: 8px 0;
+      padding-inline-start: 20px
+    }
+
+    ol.reading li {
+      margin: 7px 0
+    }
+
+    ol.reading a {
+      color: var(--p6);
+      text-decoration: none
+    }
+
+    ol.reading a:hover {
+      text-decoration: underline
+    }
+
+    .check {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin: 16px 0 0;
+      font-size: 13px;
+      color: var(--muted);
+      cursor: pointer;
+      user-select: none
+    }
+
+    .check input {
+      width: 17px;
+      height: 17px;
+      accent-color: #34d399;
+      cursor: pointer
+    }
+
+    footer {
+      max-width: 1000px;
+      margin: 30px auto 0;
+      padding: 22px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid var(--line)
+    }
+
+    footer a {
+      color: var(--p6);
+      text-decoration: none
+    }
+
+    .anchorlinks {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 8px 0 22px
+    }
+
+    .anchorlinks a {
+      font-size: 12.5px;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 6px 11px;
+      border: 1px solid var(--line);
+      border-radius: 20px
+    }
+
+    .anchorlinks a:hover {
+      color: var(--txt);
+      border-color: var(--docs)
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="top">
+      <h1>Frappe / ERPNext Developer Roadmap</h1>
+      <p>A beginner-friendly path from zero to building real Frappe apps. Every topic links to documentation, and each
+        phase has a hand-picked video course.</p>
+      <div class="legend">
+        <span><span class="dot" style="background:#22c55e"></span>Arabic video (Elzero)</span>
+        <span><span class="dot" style="background:#e60c00"></span>English video</span>
+        <span><span class="dot" style="background:#3b82f6"></span>↗ Topic docs</span>
+        <span>★ = priority</span>
+      </div>
+    </header>
+
+    <div class="anchorlinks">
+      <a href="#p1">1 · Python</a><a href="#p2">2 · SQL</a><a href="#p3">3 · Git</a>
+      <a href="#p4">4 · Web</a><a href="#p5">5 · ERP</a><a href="#p6">6 · Frappe</a><a href="#p7">7 · Backend</a>
+    </div>
+
+    <div class="progwrap">
+      <div class="progbar">
+        <div class="progfill" id="pf"></div>
+      </div>
+      <div class="progtxt" id="pt">0 / 7 phases done</div>
+    </div>
+
+    <!-- PHASE 1 -->
+    <section class="phase" id="p1" style="--pc:var(--p1)">
+      <div class="phead">
+        <div class="pnum">1</div>
+        <div class="ptitle">
+          <h2>Python Programming</h2>
+          <div class="stars">★★★★★ <small>core</small></div>
+        </div>
+        <div class="chev">▼</div>
+      </div>
+      <div class="pbody">
+        <div class="goal"><b>Goal:</b> Become comfortable writing Python before touching Frappe. Frappe's backend is
+          100% Python — this is your foundation.</div>
+        <div class="videos">
+          <a class="ytbtn ar" href="https://www.youtube.com/playlist?list=PLDoPjvoNmBAyE_gei5d18qkfIe-Z8mocs"
+            target="_blank"><span class="yi"></span>Learn Python in Arabic — Elzero Web School</a>
+        </div>
+        <div class="grp">
+          <h3>Basics</h3>
+          <div class="chips">
+            <a class="chip" href="https://www.w3schools.com/python/python_variables.asp" target="_blank">Variables</a>
+            <a class="chip" href="https://www.w3schools.com/python/python_datatypes.asp" target="_blank">Data types</a>
+            <a class="chip" href="https://www.w3schools.com/python/python_operators.asp" target="_blank">Operators</a>
+            <a class="chip" href="https://www.w3schools.com/python/python_conditions.asp" target="_blank">Conditions</a>
+            <a class="chip" href="https://www.w3schools.com/python/python_for_loops.asp" target="_blank">Loops</a>
+            <a class="chip" href="https://www.w3schools.com/python/python_functions.asp" target="_blank">Functions</a>
+          </div>
+        </div>
+        <div class="grp">
+          <h3>Intermediate</h3>
+          <div class="chips">
+            <a class="chip" href="https://www.w3schools.com/python/python_modules.asp" target="_blank">Modules</a>
+            <a class="chip" href="https://docs.python.org/3/tutorial/modules.html#packages" target="_blank">Packages</a>
+            <a class="chip" href="https://www.w3schools.com/python/python_file_handling.asp" target="_blank">File
+              handling</a>
+            <a class="chip" href="https://www.w3schools.com/python/python_try_except.asp" target="_blank">Exceptions</a>
+            <a class="chip" href="https://www.w3schools.com/python/python_lists_comprehension.asp" target="_blank">List
+              comprehensions</a>
+            <a class="chip" href="https://docs.python.org/3/library/venv.html" target="_blank">Virtual environments</a>
+          </div>
+        </div>
+        <div class="grp">
+          <h3>Advanced</h3>
+          <div class="chips">
+            <a class="chip" href="https://www.w3schools.com/python/python_classes.asp" target="_blank">OOP
+              (important)</a>
+            <a class="chip" href="https://realpython.com/primer-on-python-decorators/" target="_blank">Decorators</a>
+          </div>
+        </div>
+        <div class="note proj">
+          <h4>🎯 Practice Project — Number Guessing Game (CLI)</h4>
+          <p>Build a terminal game: the program picks a random number, the player keeps guessing with "too high / too
+            low" hints until they win. Uses variables, loops, conditions, functions and the <code>random</code> module —
+            the whole Basics section in one small app. <b>Then level up:</b> a To-Do list app that saves tasks to a file
+            (file handling + exceptions).</p>
+          <div class="tutrow">
+            <a class="ptutorial eng" href="https://www.freecodecamp.org/news/python-projects-junior-developers/"
+              target="_blank">▶ Tutorial — freeCodeCamp beginner projects</a>
+          </div>
+        </div>
+        <label class="check"><input type="checkbox" data-phase> Mark Phase 1 complete</label>
+      </div>
+    </section>
+
+    <!-- PHASE 2 -->
+    <section class="phase" id="p2" style="--pc:var(--p2)">
+      <div class="phead">
+        <div class="pnum">2</div>
+        <div class="ptitle">
+          <h2>SQL &amp; Databases</h2>
+          <div class="stars">★★★★★ <small>core</small></div>
+        </div>
+        <div class="chev">▼</div>
+      </div>
+      <div class="pbody">
+        <div class="goal"><b>Goal:</b> Understand how data is stored and queried. Frappe runs on <b>MariaDB</b>, so SQL
+          is essential. Practice with MariaDB (or Postgres).</div>
+        <div class="videos">
+          <a class="ytbtn" href="https://www.youtube.com/watch?v=HXV3zeQKqGY" target="_blank"><span
+              class="yi"></span>SQL Full Course for Beginners — freeCodeCamp</a>
+          <a class="doclink" href="https://mariadb.com/kb/en/documentation/" target="_blank">↗ MariaDB Docs</a>
+          <a class="doclink" href="https://www.postgresql.org/docs/current/tutorial.html" target="_blank">↗ Postgres
+            Tutorial</a>
+        </div>
+        <div class="grp">
+          <h3>Database concepts</h3>
+          <div class="chips">
+            <a class="chip" href="https://www.w3schools.com/sql/sql_create_table.asp" target="_blank">Tables</a>
+            <a class="chip" href="https://www.w3schools.com/sql/sql_insert.asp" target="_blank">Rows</a>
+            <a class="chip" href="https://www.w3schools.com/sql/sql_datatypes.asp" target="_blank">Columns</a>
+            <a class="chip" href="https://www.w3schools.com/sql/sql_primarykey.asp" target="_blank">Primary Keys</a>
+            <a class="chip" href="https://www.w3schools.com/sql/sql_foreignkey.asp" target="_blank">Foreign Keys</a>
+            <a class="chip" href="https://www.w3schools.com/sql/sql_join.asp" target="_blank">Relationships</a>
+          </div>
+        </div>
+        <div class="grp">
+          <h3>SQL</h3>
+          <div class="chips">
+            <a class="chip" href="https://www.w3schools.com/sql/sql_select.asp" target="_blank">SELECT</a>
+            <a class="chip" href="https://www.w3schools.com/sql/sql_insert.asp" target="_blank">INSERT</a>
+            <a class="chip" href="https://www.w3schools.com/sql/sql_update.asp" target="_blank">UPDATE</a>
+            <a class="chip" href="https://www.w3schools.com/sql/sql_delete.asp" target="_blank">DELETE</a>
+          </div>
+        </div>
+        <div class="grp">
+          <h3>Advanced SQL</h3>
+          <div class="chips">
+            <a class="chip" href="https://www.w3schools.com/sql/sql_join.asp" target="_blank">JOIN</a>
+            <a class="chip" href="https://www.w3schools.com/sql/sql_groupby.asp" target="_blank">GROUP BY</a>
+            <a class="chip" href="https://www.w3schools.com/sql/sql_having.asp" target="_blank">HAVING</a>
+            <a class="chip" href="https://www.w3schools.com/sql/sql_subqueries.asp" target="_blank">Subqueries</a>
+            <a class="chip" href="https://www.w3schools.com/sql/sql_view.asp" target="_blank">Views</a>
+            <a class="chip" href="https://www.w3schools.com/sql/sql_create_index.asp" target="_blank">Indexes</a>
+            <a class="chip" href="https://mariadb.com/kb/en/transactions/" target="_blank">Transactions</a>
+          </div>
+        </div>
+        <div class="grp">
+          <h3>Performance</h3>
+          <div class="chips">
+            <a class="chip" href="https://mariadb.com/kb/en/query-optimizations/" target="_blank">Query execution</a>
+            <a class="chip" href="https://mariadb.com/kb/en/optimization-and-indexes/" target="_blank">Indexes</a>
+            <a class="chip" href="https://mariadb.com/kb/en/explain/" target="_blank">EXPLAIN</a>
+          </div>
+        </div>
+        <div class="note proj">
+          <h4>🎯 Practice Project — Library Database</h4>
+          <p>Design a small database with three tables: <b>books</b>, <b>members</b>, and <b>loans</b> (with primary
+            &amp; foreign keys). Then write queries: list all borrowed books with the member's name (JOIN), count loans
+            per member (GROUP BY), and find members with more than 3 active loans (HAVING). This mirrors exactly how
+            Frappe stores linked data.</p>
+          <div class="tutrow">
+            <a class="ptutorial eng" href="https://leetcode.com/studyplan/top-sql-50/" target="_blank">▶ Challenge —
+              LeetCode SQL 50</a>
+          </div>
+        </div>
+        <label class="check"><input type="checkbox" data-phase> Mark Phase 2 complete</label>
+      </div>
+    </section>
+
+    <!-- PHASE 3 -->
+    <section class="phase" id="p3" style="--pc:var(--p3)">
+      <div class="phead">
+        <div class="pnum">3</div>
+        <div class="ptitle">
+          <h2>Git &amp; GitHub</h2>
+          <div class="stars">★★★★ <small>essential tooling</small></div>
+        </div>
+        <div class="chev">▼</div>
+      </div>
+      <div class="pbody">
+        <div class="goal"><b>Goal:</b> Version your code, collaborate, and manage Frappe apps (every Frappe app is a Git
+          repo).</div>
+        <div class="videos">
+          <a class="ytbtn" href="https://www.youtube.com/watch?v=mAFoROnOfHs" target="_blank"><span
+              class="yi"></span>Git &amp; GitHub Crash Course — freeCodeCamp</a>
+          <a class="doclink" href="https://docs.github.com/en/get-started" target="_blank">↗ GitHub Docs</a>
+        </div>
+        <div class="grp">
+          <h3>Core skills</h3>
+          <div class="chips">
+            <a class="chip" href="https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository"
+              target="_blank">Commit</a>
+            <a class="chip" href="https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell"
+              target="_blank">Branch &amp; Merge</a>
+            <a class="chip"
+              href="https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository"
+              target="_blank">Push / Pull</a>
+            <a class="chip" href="https://docs.github.com/en/pull-requests" target="_blank">Pull Requests</a>
+            <a class="chip" href="https://git-scm.com/doc" target="_blank">Full Git reference</a>
+          </div>
+        </div>
+        <div class="note proj">
+          <h4>🎯 Practice Project — Put your Python game on GitHub</h4>
+          <p>Take the guessing game from Phase 1: create a repo, commit it, add a <code>README.md</code>, create a
+            <code>feature</code> branch, make a change, and open a Pull Request to merge it back. That's the exact
+            workflow you'll use on every Frappe app.</p>
+          <div class="tutrow">
+            <a class="ptutorial eng" href="https://docs.github.com/en/get-started/start-your-journey/hello-world"
+              target="_blank">▶ Tutorial — GitHub "Hello World" guide</a>
+          </div>
+        </div>
+        <label class="check"><input type="checkbox" data-phase> Mark Phase 3 complete</label>
+      </div>
+    </section>
+
+    <!-- PHASE 4 -->
+    <section class="phase" id="p4" style="--pc:var(--p4)">
+      <div class="phead">
+        <div class="pnum">4</div>
+        <div class="ptitle">
+          <h2>HTML, CSS &amp; JavaScript</h2>
+          <div class="stars">★★★★ <small>focus on JS</small></div>
+        </div>
+        <div class="chev">▼</div>
+      </div>
+      <div class="pbody">
+        <div class="goal"><b>Goal:</b> Frappe abstracts much of the frontend, but you must understand the technologies
+          behind it — especially <b>JavaScript</b>, the engine of page interactivity.</div>
+        <div class="videos">
+          <a class="ytbtn ar" href="https://www.youtube.com/playlist?list=PLDoPjvoNmBAx3kiplQR_oeDqLDBUDYwVv"
+            target="_blank"><span class="yi"></span>Learn JavaScript in Arabic — Elzero</a>
+          <a class="ytbtn ar" href="https://www.youtube.com/playlist?list=PLDoPjvoNmBAw_t_XWUFbBX-c9MafPk9ji"
+            target="_blank"><span class="yi"></span>Learn HTML — Elzero</a>
+          <a class="ytbtn ar" href="https://www.youtube.com/playlist?list=PLDoPjvoNmBAzjsz06gkzlSrlev53MGIKe"
+            target="_blank"><span class="yi"></span>Learn CSS — Elzero</a>
+        </div>
+        <div class="grp">
+          <h3>HTML</h3>
+          <div class="chips">
+            <a class="chip" href="https://www.w3schools.com/html/html_elements.asp" target="_blank">Elements</a>
+            <a class="chip" href="https://www.w3schools.com/html/html_forms.asp" target="_blank">Forms</a>
+            <a class="chip" href="https://www.w3schools.com/html/html_tables.asp" target="_blank">Tables</a>
+            <a class="chip" href="https://www.w3schools.com/html/html5_semantic_elements.asp" target="_blank">Semantic
+              HTML</a>
+          </div>
+        </div>
+        <div class="grp">
+          <h3>CSS</h3>
+          <div class="chips">
+            <a class="chip" href="https://www.w3schools.com/css/css_selectors.asp" target="_blank">Selectors</a>
+            <a class="chip" href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank">Flexbox</a>
+            <a class="chip" href="https://css-tricks.com/snippets/css/complete-guide-grid/" target="_blank">Grid</a>
+            <a class="chip" href="https://www.w3schools.com/css/css_rwd_intro.asp" target="_blank">Responsive design</a>
+          </div>
+        </div>
+        <div class="grp">
+          <h3>JavaScript — Basics</h3>
+          <div class="chips">
+            <a class="chip" href="https://www.w3schools.com/js/js_variables.asp" target="_blank">Variables</a>
+            <a class="chip" href="https://www.w3schools.com/js/js_functions.asp" target="_blank">Functions</a>
+            <a class="chip" href="https://www.w3schools.com/js/js_objects.asp" target="_blank">Objects</a>
+            <a class="chip" href="https://www.w3schools.com/js/js_arrays.asp" target="_blank">Arrays</a>
+          </div>
+        </div>
+        <div class="grp">
+          <h3>JavaScript — Advanced</h3>
+          <div class="chips">
+            <a class="chip" href="https://www.w3schools.com/js/js_htmldom.asp" target="_blank">DOM</a>
+            <a class="chip" href="https://www.w3schools.com/js/js_events.asp" target="_blank">Events</a>
+            <a class="chip" href="https://www.w3schools.com/js/js_async.asp" target="_blank">Async/Await</a>
+            <a class="chip" href="https://www.w3schools.com/js/js_promise.asp" target="_blank">Promises</a>
+            <a class="chip" href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch"
+              target="_blank">Fetch API</a>
+          </div>
+        </div>
+        <div class="note ar">
+          <h4>ملاحظة مهمة عن الـ Phase دي</h4>
+          <p>أهم حاجة في الـ phase دي هي الـ <b>JavaScript</b> — تعرف بس تكتب بيها لوجيك زي أي لغة، وشوية حاجات تخصها زي
+            اللي مكتوبين في جزء الـ advanced بتاعها.</p>
+          <p>جزء الـ <b>HTML &amp; CSS</b> متطوّلش فيه أوي — اعرف بس إزاي تبني صفحة، والـ AI شاطر في الحتة دي أوي. المهم
+            إنك تبقى عارف إن الـ JavaScript هي المحرك والمسؤولة عن الـ interactivity في الصفحة.</p>
+        </div>
+        <div class="note proj">
+          <h4>🎯 Project 1 — Interactive To-Do List (DOM + Events)</h4>
+          <p>Build a to-do app with plain HTML, CSS &amp; JavaScript: add tasks, delete them, mark them done, and update
+            the DOM live on each event. It exercises the whole Advanced JS section (DOM + Events).</p>
+          <div class="tutrow">
+            <a class="ptutorial eng" href="https://www.youtube.com/watch?v=3OqWCGVaOkA" target="_blank">▶ Tutorial —
+              Build a To-Do List (HTML/CSS/JS)</a>
+          </div>
+        </div>
+        <div class="note proj">
+          <h4>🎯 Project 2 — Weather App (Fetch API + Async/Await)</h4>
+          <p>The key project for backend-style JS: a user types a city, you <b>fetch</b> live data from the free
+            OpenWeatherMap API, <b>await</b> the response (a Promise), then render temperature, humidity and conditions
+            to the DOM — with error handling for a wrong city. This is exactly the pattern you'll use to call Frappe's
+            REST API later, so treat it as essential, not optional.</p>
+          <div class="tutrow">
+            <a class="ptutorial eng" href="https://www.youtube.com/watch?v=MIYQR-Ybrn4" target="_blank">▶ Tutorial —
+              Weather App with JS &amp; Fetch (GreatStack)</a>
+            <a class="ptutorial eng" href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch"
+              target="_blank">▶ Reference — MDN Using Fetch</a>
+          </div>
+        </div>
+        <label class="check"><input type="checkbox" data-phase> Mark Phase 4 complete</label>
+      </div>
+    </section>
+
+    <!-- PHASE 5 -->
+    <section class="phase" id="p5" style="--pc:var(--p5)">
+      <div class="phead">
+        <div class="pnum">5</div>
+        <div class="ptitle">
+          <h2>ERP Concepts (Business Domain)</h2>
+          <div class="stars">★★★★ <small>what sets you apart</small></div>
+        </div>
+        <div class="chev">▼</div>
+      </div>
+      <div class="pbody">
+        <div class="goal"><b>Goal:</b> Many Frappe developers struggle not because of code, but because they don't
+          understand the <b>business processes</b>. Learn how a company actually runs: how stock moves, how
+          buying/selling works, accounting, manufacturing, HR.</div>
+        <div class="videos">
+          <a class="ytbtn" href="https://school.frappe.io/lms/courses" target="_blank"><span class="yi"></span>Frappe
+            School — ERPNext Courses</a>
+          <a class="doclink" href="https://frappe.io/erpnext-sales-purchase-perpetual-inventory" target="_blank">↗
+            Sales, Purchase &amp; Perpetual Inventory explained</a>
+        </div>
+        <div class="grp">
+          <h3>Modules to learn</h3>
+          <div class="chips">
+            <a class="chip" href="https://docs.erpnext.com/docs/user/manual/en/stock" target="_blank">Inventory</a>
+            <a class="chip" href="https://docs.erpnext.com/docs/user/manual/en/buying" target="_blank">Buying</a>
+            <a class="chip" href="https://docs.erpnext.com/docs/user/manual/en/selling" target="_blank">Selling</a>
+            <a class="chip" href="https://docs.erpnext.com/docs/user/manual/en/accounts" target="_blank">Accounting
+              basics</a>
+            <a class="chip" href="https://docs.erpnext.com/docs/user/manual/en/manufacturing"
+              target="_blank">Manufacturing</a>
+            <a class="chip" href="https://docs.erpnext.com/docs/user/manual/en/CRM" target="_blank">CRM</a>
+            <a class="chip" href="https://docs.frappe.io/hr" target="_blank">HR</a>
+            <a class="chip" href="https://docs.erpnext.com/docs/user/manual/en/projects" target="_blank">Projects</a>
+          </div>
+        </div>
+        <div class="note ar tip">
+          <h4>ليه الـ Phase دي بتفرق؟</h4>
+          <p>لحد هنا أنت أصلًا تقدر تدخل على Frappe مرتاح جدًا وتبدأ تبني Apps وتعدّل على ERPNext. لكن الـ Phase دي هي
+            اللي هتفرّق بين واحد بيعرف <b>يستخدم</b> Frappe، وواحد فاهم هو بيحلّ <b>مشكلة إيه</b> أصلًا.</p>
+          <p>لو خلّصت المرحلة دي هتبقى مميّز في أي شركة، لأن أغلب الـ Developers للأسف بيعدّوها — يا كسل، يا إنهم شايفين
+            Frappe مجرد Framework بيتبني بيه Apps ومش بيحاولوا يفهموا الـ Business Domain اللي النظام معمول عشانه.</p>
+          <p>المشكلة الحقيقية بتظهر أول ما ياخد Task من العميل: هتلاقيه واقف مش عارف يبدأ منين — مش لأنه مش بيعرف يكتب
+            كود، لكن لأنه مش فاهم الـ Business Process. والمقصود بالـ Business هنا هو طريقة شغل الشركة نفسها: المخازن
+            بتتحرك إزاي، المشتريات، المبيعات، المحاسبة، التصنيع، الموارد البشرية.</p>
+          <p><b>مثال:</b> العميل قالك: «لما أعمل Sales Invoice، الكمية لازم تتخصم من المخزن، ولو العميل رجّع البضاعة في
+            Return Invoice ترجع الكمية تاني.»</p>
+          <p>لو فاهم Python وFrappe بس، هتقعد تسأل: أخصم منين؟ وإمتى؟ الـ Sales Order بيخصم ولا الـ Delivery Note ولا
+            الـ Invoice؟ وطب لو في Partial Delivery؟ ولو في Reserved Stock؟</p>
+          <p>لكن لو فاهم أساسيات الـ <b>Inventory Cycle</b> في الـ ERP، هتعرف إن السؤال مش عن الكود — السؤال عن
+            <b>Business Rules</b>. ساعتها هتسأل العميل الأسئلة الصح، وتفتح كود ERPNext وتفهم ليه النظام متطبّق بالطريقة
+            دي بدل ما تخمّن.</p>
+        </div>
+        <div class="note proj">
+          <h4>🎯 Practice Project — Run the Order-to-Cash cycle in ERPNext</h4>
+          <p>No coding here — <b>use the system as a business user</b>. Get a free ERPNext trial, create an Item with
+            stock, then run a full cycle: Sales Order → Delivery Note → Sales Invoice, and watch the stock quantity
+            drop. Next, do a Return and watch it come back. Now you'll <i>feel</i> the business rules behind every
+            DocType you'll later customize.</p>
+          <div class="tutrow">
+            <a class="ptutorial eng" href="https://frappe.io/erpnext" target="_blank">▶ Start — Free ERPNext trial</a>
+            <a class="ptutorial eng" href="https://docs.erpnext.com/docs/user/manual/en/selling" target="_blank">▶ Guide
+              — Selling cycle docs</a>
+          </div>
+        </div>
+        <label class="check"><input type="checkbox" data-phase> Mark Phase 5 complete</label>
+      </div>
+    </section>
+
+    <!-- PHASE 6 -->
+    <section class="phase" id="p6" style="--pc:var(--p6)">
+      <div class="phead">
+        <div class="pnum">6</div>
+        <div class="ptitle">
+          <h2>Frappe Framework Fundamentals</h2>
+          <div class="stars">★★★★★ <small>core</small></div>
+        </div>
+        <div class="chev">▼</div>
+      </div>
+      <div class="pbody">
+        <div class="goal"><b>Goal:</b> Now you're ready to start learning Frappe. Master the architecture, DocTypes, and
+          the ORM. <b>Completion target:</b> able to build CRUD applications.</div>
+        <div class="videos">
+          <a class="ytbtn" href="https://school.frappe.io/lms/courses/frappe-framework-course" target="_blank"><span
+              class="yi"></span>Frappe Framework Course — Frappe School</a>
+        </div>
+        <div class="grp">
+          <h3>Architecture</h3>
+          <div class="chips">
+            <a class="chip" href="https://docs.frappe.io/framework/user/en/tutorial/install-and-setup-bench"
+              target="_blank">Bench</a>
+            <a class="chip" href="https://docs.frappe.io/framework/user/en/basics/sites" target="_blank">Sites</a>
+            <a class="chip" href="https://docs.frappe.io/framework/user/en/basics/apps" target="_blank">Apps</a>
+          </div>
+        </div>
+        <div class="grp">
+          <h3>Development</h3>
+          <div class="chips">
+            <a class="chip" href="https://docs.frappe.io/framework/user/en/basics/doctypes" target="_blank">Doctypes</a>
+            <a class="chip" href="https://docs.frappe.io/framework/user/en/basics/doctypes/child-doctype"
+              target="_blank">Child Tables</a>
+            <a class="chip" href="https://docs.frappe.io/framework/user/en/basics/doctypes/naming"
+              target="_blank">Naming Series</a>
+            <a class="chip" href="https://docs.frappe.io/framework/user/en/basics/users-and-permissions"
+              target="_blank">Permissions &amp; Roles</a>
+            <a class="chip"
+              href="https://docs.frappe.io/framework/user/en/guides/app-development/executing-code-on-doctype-events"
+              target="_blank">Workflows &amp; Events</a>
+          </div>
+        </div>
+        <div class="grp">
+          <h3>Data</h3>
+          <div class="chips">
+            <a class="chip" href="https://docs.frappe.io/framework/user/en/api/document" target="_blank">ORM /
+              Documents</a>
+            <a class="chip" href="https://docs.frappe.io/framework/user/en/api/database" target="_blank">Database
+              API</a>
+            <a class="chip" href="https://docs.frappe.io/framework/user/en/api/query-builder" target="_blank">Query
+              Builder</a>
+          </div>
+        </div>
+        <div class="grp">
+          <h3>Customization</h3>
+          <div class="chips">
+            <a class="chip" href="https://docs.frappe.io/framework/user/en/basics/doctypes/customize"
+              target="_blank">Custom Fields</a>
+            <a class="chip" href="https://docs.frappe.io/framework/user/en/basics/doctypes/customize"
+              target="_blank">Property Setters</a>
+            <a class="chip"
+              href="https://docs.frappe.io/framework/user/en/guides/app-development/exporting-customizations"
+              target="_blank">Fixtures</a>
+          </div>
+        </div>
+        <div class="grp">
+          <h3>📖 Read the docs in this order</h3>
+          <ol class="reading">
+            <li><a href="https://docs.frappe.io/framework/user/en/introduction" target="_blank">Introduction</a></li>
+            <li><a href="https://docs.frappe.io/framework/user/en/installation" target="_blank">Installation</a></li>
+            <li><a href="https://docs.frappe.io/framework/user/en/tutorial/install-and-setup-bench"
+                target="_blank">Bench</a></li>
+            <li><a href="https://docs.frappe.io/framework/user/en/basics/apps" target="_blank">App</a></li>
+            <li><a href="https://docs.frappe.io/framework/user/en/basics/sites" target="_blank">Site</a></li>
+            <li><a href="https://docs.frappe.io/framework/user/en/basics/doctypes" target="_blank">Doctype</a></li>
+            <li><a href="https://docs.frappe.io/framework/user/en/api/document" target="_blank">Document API</a></li>
+            <li><a href="https://docs.frappe.io/framework/user/en/api/database" target="_blank">Database API</a></li>
+          </ol>
+        </div>
+        <div class="note proj">
+          <h4>🎯 Practice Project — Library Management App</h4>
+          <p>Build the classic Frappe starter: a Library app where a librarian manages Articles (books), Members,
+            Memberships and Transactions (issue / return). It walks you through Apps, DocTypes, Child Tables, Naming and
+            the ORM. When you can do full CRUD end-to-end, clear the phase — then repeat with a <b>School Management</b>
+            and an <b>Employee Tracker</b> app.</p>
+          <div class="tutrow">
+            <a class="ptutorial eng" href="https://docs.frappe.io/framework/user/en/tutorial/create-an-app"
+              target="_blank">▶ Official step-by-step tutorial</a>
+            <a class="ptutorial eng" href="https://www.youtube.com/watch?v=jCZrR-8IGvA" target="_blank">▶ Full video
+              walkthrough (v15)</a>
+          </div>
+        </div>
+        <label class="check"><input type="checkbox" data-phase> Mark Phase 6 complete</label>
+      </div>
+    </section>
+
+    <!-- PHASE 7 -->
+    <section class="phase" id="p7" style="--pc:var(--p7)">
+      <div class="phead">
+        <div class="pnum">7</div>
+        <div class="ptitle">
+          <h2>Backend Development in Frappe</h2>
+          <div class="stars">★★★★★ <small>go pro</small></div>
+        </div>
+        <div class="chev">▼</div>
+      </div>
+      <div class="pbody">
+        <div class="goal"><b>Goal:</b> Write real server-side logic — events, hooks, background jobs, permissions and
+          integrations. This is where you become a productive Frappe developer.</div>
+        <div class="videos">
+          <a class="ytbtn" href="https://school.frappe.io/lms/courses/frappe-developer-certification"
+            target="_blank"><span class="yi"></span>Full-stack App Development — Frappe School</a>
+          <a class="doclink" href="https://docs.frappe.io/framework" target="_blank">↗ Frappe Framework Docs</a>
+        </div>
+        <div class="grp">
+          <h3>Topics</h3>
+          <div class="chips">
+            <a class="chip"
+              href="https://docs.frappe.io/framework/user/en/guides/app-development/executing-code-on-doctype-events"
+              target="_blank">Document Events</a>
+            <a class="chip" href="https://docs.frappe.io/framework/user/en/python-api/hooks" target="_blank">Hooks</a>
+            <a class="chip" href="https://docs.frappe.io/framework/user/en/basics/doctypes/controllers"
+              target="_blank">Controllers</a>
+            <a class="chip" href="https://docs.frappe.io/framework/user/en/api/rest" target="_blank">Whitelisted
+              Methods</a>
+            <a class="chip" href="https://docs.frappe.io/framework/user/en/basics/users-and-permissions"
+              target="_blank">Permissions</a>
+            <a class="chip" href="https://school.frappe.io/lms/courses" target="_blank">Server Scripts</a>
+            <a class="chip"
+              href="https://docs.frappe.io/framework/user/en/guides/app-development/running-background-jobs"
+              target="_blank">Background Jobs</a>
+            <a class="chip" href="https://docs.frappe.io/framework/user/en/python-api/hooks"
+              target="_blank">Scheduler</a>
+            <a class="chip" href="https://docs.frappe.io/framework/user/en/email-groups" target="_blank">Emails</a>
+            <a class="chip" href="https://docs.frappe.io/framework/user/en/api/document" target="_blank">File
+              Management</a>
+            <a class="chip" href="https://docs.frappe.io/framework/user/en/guides/caching" target="_blank">Caching</a>
+          </div>
+        </div>
+        <div class="note proj">
+          <h4>🎯 Practice Project — Add real backend logic to your Library App</h4>
+          <p>Extend the app from Phase 6 with server-side rules: a <b>document event</b> that blocks issuing a book when
+            stock is 0, a <b>whitelisted method</b> that returns a member's currently-borrowed books to the frontend,
+            and a <b>scheduled job</b> that emails members with overdue books every morning. This is exactly the kind of
+            task a client will hand you.</p>
+          <div class="tutrow">
+            <a class="ptutorial eng"
+              href="https://docs.frappe.io/framework/user/en/guides/app-development/executing-code-on-doctype-events"
+              target="_blank">▶ Guide — Code on DocType events</a>
+            <a class="ptutorial eng" href="https://school.frappe.io/lms/courses/frappe-developer-certification"
+              target="_blank">▶ Course — Full-stack Frappe</a>
+          </div>
+        </div>
+        <label class="check"><input type="checkbox" data-phase> Mark Phase 7 complete</label>
+      </div>
+    </section>
+
+    <footer>
+      Built for a beginner Frappe / ERPNext developer · Python &amp; JS in Arabic via
+      <a href="https://www.youtube.com/@ElzeroWebSchool" target="_blank">Elzero Web School</a> ·
+      Official references from <a href="https://docs.frappe.io/framework" target="_blank">Frappe</a> &amp;
+      <a href="https://docs.erpnext.com/" target="_blank">ERPNext</a>.
+      <br>Tip: click a phase header to collapse it, and tick the boxes to track your progress.
+    </footer>
+  </div>
+
+  <script>
+    // collapse/expand
+    document.querySelectorAll('.phead').forEach(h => {
+      h.addEventListener('click', () => h.parentElement.classList.toggle('collapsed'));
+    });
+    // progress
+    const boxes = [...document.querySelectorAll('input[data-phase]')];
+    const fill = document.getElementById('pf'), txt = document.getElementById('pt');
+    function upd() {
+      const n = boxes.filter(b => b.checked).length;
+      fill.style.width = (n / boxes.length * 100) + '%';
+      txt.textContent = n + ' / ' + boxes.length + ' phases done';
+    }
+    boxes.forEach(b => b.addEventListener('change', e => { e.stopPropagation(); upd(); }));
+    // prevent checkbox toggling collapse
+    document.querySelectorAll('.check').forEach(l => l.addEventListener('click', e => e.stopPropagation()));
+    upd();
+  </script>
+</body>
+
+</html>

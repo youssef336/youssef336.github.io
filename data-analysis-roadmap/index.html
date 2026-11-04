@@ -1,0 +1,1552 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Analyst Roadmap</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --card: #161b22;
+      --card2: #1c2330;
+      --line: #2a323d;
+      --txt: #e6edf3;
+      --muted: #9aa7b4;
+      --chip: #21262d;
+      --chipbd: #30363d;
+      --yt: #ff3b30;
+      --docs: #3b82f6;
+      --p1: #34d399;
+      --p2: #f59e0b;
+      --p3: #22d3ee;
+      --p4: #a78bfa;
+      --p5: #f472b6;
+      --p6: #60a5fa;
+      --p7: #f87171;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      background: radial-gradient(1200px 600px at 20% -10%, #182031, transparent), var(--bg);
+      color: var(--txt);
+      font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+      line-height: 1.55;
+      padding: 0 16px 80px;
+    }
+
+    .wrap {
+      max-width: 1000px;
+      margin: 0 auto
+    }
+
+    header.top {
+      padding: 48px 0 8px;
+      text-align: center
+    }
+
+    header.top h1 {
+      font-size: clamp(28px, 5vw, 44px);
+      margin: 0 0 8px;
+      font-weight: 800;
+      background: linear-gradient(90deg, #34d399, #60a5fa, #a78bfa);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent
+    }
+
+    header.top p {
+      color: var(--muted);
+      max-width: 680px;
+      margin: 6px auto;
+      font-size: 15px
+    }
+
+    .legend {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 18px auto 4px;
+      font-size: 13px;
+      color: var(--muted)
+    }
+
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      display: inline-block
+    }
+
+    .progwrap {
+      max-width: 1000px;
+      margin: 22px auto 30px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 14px
+    }
+
+    .progbar {
+      flex: 1;
+      height: 10px;
+      background: #0b0f14;
+      border-radius: 20px;
+      overflow: hidden
+    }
+
+    .progfill {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #34d399, #60a5fa);
+      transition: width .3s
+    }
+
+    .progtxt {
+      font-size: 13px;
+      color: var(--muted);
+      white-space: nowrap;
+      min-width: 120px;
+      text-align: right
+    }
+
+    .phase {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-left: 5px solid var(--pc, #60a5fa);
+      border-radius: 14px;
+      margin: 0 0 20px;
+      overflow: hidden
+    }
+
+    .phead {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 20px;
+      cursor: pointer;
+      user-select: none
+    }
+
+    .pnum {
+      flex: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 18px;
+      color: #0d1117;
+      background: var(--pc)
+    }
+
+    .ptitle {
+      flex: 1;
+      min-width: 0
+    }
+
+    .ptitle h2 {
+      margin: 0;
+      font-size: clamp(17px, 2.4vw, 21px);
+      font-weight: 700
+    }
+
+    .stars {
+      color: #f5c518;
+      font-size: 14px;
+      letter-spacing: 1px
+    }
+
+    .stars small {
+      color: var(--muted);
+      letter-spacing: 0
+    }
+
+    .chev {
+      flex: none;
+      color: var(--muted);
+      transition: transform .25s;
+      font-size: 14px
+    }
+
+    .phase.collapsed .chev {
+      transform: rotate(-90deg)
+    }
+
+    .pbody {
+      padding: 0 20px 22px;
+      border-top: 1px solid var(--line)
+    }
+
+    .phase.collapsed .pbody {
+      display: none
+    }
+
+    .goal {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 14px 0 18px;
+      padding: 10px 14px;
+      background: var(--card2);
+      border-radius: 10px;
+      border: 1px solid var(--line)
+    }
+
+    .goal b {
+      color: var(--txt)
+    }
+
+    .grp {
+      margin: 16px 0
+    }
+
+    .grp h3 {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      margin: 0 0 10px;
+      font-weight: 700
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px
+    }
+
+    a.chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--chip);
+      border: 1px solid var(--chipbd);
+      color: var(--txt);
+      text-decoration: none;
+      padding: 7px 12px;
+      border-radius: 20px;
+      font-size: 13.5px;
+      transition: .15s
+    }
+
+    a.chip:hover {
+      border-color: var(--docs);
+      background: #1b2432;
+      transform: translateY(-1px)
+    }
+
+    a.chip::before {
+      content: "↗";
+      color: var(--docs);
+      font-size: 11px
+    }
+
+    .videos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 16px 0 4px
+    }
+
+    a.ytbtn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 10px 16px;
+      border-radius: 10px;
+      color: #fff;
+      background: linear-gradient(180deg, #ff5147, #e60c00);
+      border: 1px solid #ff6b63;
+      box-shadow: 0 4px 14px rgba(230, 12, 0, .25);
+      transition: .15s
+    }
+
+    a.ytbtn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(230, 12, 0, .4)
+    }
+
+    a.ytbtn .yi {
+      width: 22px;
+      height: 16px;
+      background: #fff;
+      border-radius: 4px;
+      position: relative;
+      flex: none
+    }
+
+    a.ytbtn .yi::after {
+      content: "";
+      position: absolute;
+      left: 8px;
+      top: 4px;
+      border-left: 8px solid #e60c00;
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent
+    }
+
+    a.ytbtn.ar {
+      background: linear-gradient(180deg, #22c55e, #15803d);
+      border-color: #4ade80;
+      box-shadow: 0 4px 14px rgba(21, 128, 61, .28)
+    }
+
+    a.ytbtn.ar .yi::after {
+      border-left-color: #15803d
+    }
+
+    a.doclink {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 10px 16px;
+      border-radius: 10px;
+      color: var(--txt);
+      background: var(--card2);
+      border: 1px solid var(--docs)
+    }
+
+    a.doclink:hover {
+      background: #1b2838
+    }
+
+    a.doclink.ar {
+      border-color: #22c55e
+    }
+
+    .tag {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 20px;
+      background: #0b0f14;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      margin-left: 2px;
+      font-weight: 700;
+      letter-spacing: .02em
+    }
+
+    .tag.free {
+      color: #34d399;
+      border-color: #1f5c46
+    }
+
+    .tag.paid {
+      color: #fbbf24;
+      border-color: #7a5a12
+    }
+
+    .tag.mix {
+      color: #60a5fa;
+      border-color: #1e3a8a
+    }
+
+    .note {
+      margin: 18px 0 4px;
+      padding: 16px 18px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, #141b26, #11161f)
+    }
+
+    .note.ar {
+      direction: rtl;
+      text-align: right;
+      font-family: "Segoe UI", "Tahoma", sans-serif;
+      font-size: 15px
+    }
+
+    .note h4 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      color: var(--p4)
+    }
+
+    .note.tip h4 {
+      color: #fbbf24
+    }
+
+    .note.proj {
+      background: linear-gradient(180deg, #10241c, #0e1a16);
+      border-color: #1f5c46
+    }
+
+    .note.proj h4 {
+      color: #34d399
+    }
+
+    .note.proj .ptutorial {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 8px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      color: #0d1117;
+      background: #34d399;
+      padding: 7px 13px;
+      border-radius: 8px
+    }
+
+    .note.proj .ptutorial:hover {
+      background: #2bbd85
+    }
+
+    .note.proj .ptutorial.ar {
+      background: #22c55e
+    }
+
+    .note.proj .ptutorial.eng {
+      background: #60a5fa
+    }
+
+    .note.proj .tutrow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px
+    }
+
+    .note p {
+      margin: 8px 0;
+      color: #cdd6e0
+    }
+
+    .note ul {
+      margin: 8px 0;
+      padding-inline-start: 22px;
+      color: #cdd6e0
+    }
+
+    .note b {
+      color: #fff
+    }
+
+    .note code {
+      background: #0b0f14;
+      border: 1px solid var(--line);
+      padding: 1px 6px;
+      border-radius: 6px;
+      font-size: 13px
+    }
+
+    ol.reading {
+      margin: 8px 0;
+      padding-inline-start: 20px
+    }
+
+    ol.reading li {
+      margin: 7px 0
+    }
+
+    ol.reading a {
+      color: var(--p6);
+      text-decoration: none
+    }
+
+    ol.reading a:hover {
+      text-decoration: underline
+    }
+
+    table.price {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      margin: 10px 0 4px
+    }
+
+    table.price th,
+    table.price td {
+      border: 1px solid var(--line);
+      padding: 8px 10px;
+      text-align: right;
+      vertical-align: top
+    }
+
+    table.price th {
+      background: var(--card2);
+      color: var(--muted);
+      font-weight: 700
+    }
+
+    .check {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin: 16px 0 0;
+      font-size: 13px;
+      color: var(--muted);
+      cursor: pointer;
+      user-select: none
+    }
+
+    .check input {
+      width: 17px;
+      height: 17px;
+      accent-color: #34d399;
+      cursor: pointer
+    }
+
+    footer {
+      max-width: 1000px;
+      margin: 30px auto 0;
+      padding: 22px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid var(--line)
+    }
+
+    footer a {
+      color: var(--p6);
+      text-decoration: none
+    }
+
+    .anchorlinks {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 8px 0 22px
+    }
+
+    .anchorlinks a {
+      font-size: 12.5px;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 6px 11px;
+      border: 1px solid var(--line);
+      border-radius: 20px
+    }
+
+    .anchorlinks a:hover {
+      color: var(--txt);
+      border-color: var(--docs)
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="top">
+      <h1>Data Analyst Roadmap</h1>
+      <p>A beginner-friendly path from zero to a job-ready Data Analyst. Every topic links to docs, and each phase lists
+        the best Arabic &amp; English video courses — free and paid — so <b>you</b> decide where to subscribe.</p>
+      <div class="legend">
+        <span><span class="dot" style="background:#22c55e"></span>Arabic video</span>
+        <span><span class="dot" style="background:#e60c00"></span>English video</span>
+        <span><span class="dot" style="background:#3b82f6"></span>↗ Topic docs</span>
+        <span><span class="tag free">FREE</span> مجاني</span>
+        <span><span class="tag paid">PAID</span> مدفوع</span>
+        <span><span class="tag mix">FREEMIUM</span> مجاني + إضافات مدفوعة</span>
+        <span>★ = priority</span>
+      </div>
+    </header>
+
+    <div class="anchorlinks">
+      <a href="#p0">0 · Start here</a><a href="#p1">1 · Excel</a><a href="#p2">2 · Statistics</a><a href="#p3">3 ·
+        SQL</a>
+      <a href="#p4">4 · Python</a><a href="#p5">5 · Power BI / Tableau</a><a href="#p6">6 · Business</a><a
+        href="#p7">7 · Portfolio &amp; Job</a>
+    </div>
+
+    <div class="progwrap">
+      <div class="progbar">
+        <div class="progfill" id="pf"></div>
+      </div>
+      <div class="progtxt" id="pt">0 / 7 phases done</div>
+    </div>
+
+    <!-- PHASE 0 : START HERE -->
+    <section class="phase" id="p0" style="--pc:#9aa7b4">
+      <div class="phead">
+        <div class="pnum">0</div>
+        <div class="ptitle">
+          <h2>Start Here — What a Data Analyst actually does</h2>
+          <div class="stars">★★★ <small>1 day · read before you start</small></div>
+        </div>
+        <div class="chev">▼</div>
+      </div>
+      <div class="pbody">
+        <div class="goal"><b>Goal:</b> Understand the job, the tools, and the difference between Data Analyst / Data
+          Scientist / Data Engineer — so you don't waste months learning the wrong things.</div>
+        <div class="videos">
+          <a class="ytbtn ar"
+            href="https://www.youtube.com/results?search_query=Mazen+Analytics+%D8%A7%D9%84%D8%AE%D8%B1%D9%8A%D8%B7%D8%A9+%D8%A7%D9%84%D9%83%D8%A7%D9%85%D9%84%D8%A9+%D9%84%D8%AA%D8%B9%D9%84%D9%85+%D8%AA%D8%AD%D9%84%D9%8A%D9%84+%D8%A7%D9%84%D8%A8%D9%8A%D8%A7%D9%86%D8%A7%D8%AA"
+            target="_blank"><span class="yi"></span>الخريطة الكاملة لتعلم تحليل البيانات — Mazen Analytics <span
+              class="tag free">FREE</span></a>
+          <a class="ytbtn"
+            href="https://www.youtube.com/results?search_query=Alex+The+Analyst+how+to+become+a+data+analyst+2025"
+            target="_blank"><span class="yi"></span>How to become a Data Analyst — Alex The Analyst <span
+              class="tag free">FREE</span></a>
+          <a class="doclink" href="https://roadmap.sh/data-analyst" target="_blank">↗ roadmap.sh — Data Analyst
+            (interactive)</a>
+        </div>
+        <div class="grp">
+          <h3>Know the field</h3>
+          <div class="chips">
+            <a class="chip" href="https://www.coursera.org/articles/what-does-a-data-analyst-do-a-career-guide"
+              target="_blank">What does a Data Analyst do?</a>
+            <a class="chip" href="https://www.coursera.org/articles/data-analyst-vs-data-scientist"
+              target="_blank">Analyst vs Scientist vs Engineer</a>
+            <a class="chip" href="https://www.kaggle.com/learn" target="_blank">Kaggle Learn (free micro-courses)</a>
+            <a class="chip" href="https://www.datacamp.com/blog/how-to-become-a-data-analyst" target="_blank">DataCamp
+              career guide</a>
+          </div>
+        </div>
+        <div class="note ar">
+          <h4>⭐ أشهر الناس اللي بيشرحوا بالعربي (كلهم مجاني على يوتيوب)</h4>
+          <ul>
+            <li><b>أسامة الزيرو (Elzero Web School)</b> — Python و MySQL: <a
+                href="https://www.youtube.com/@ElzeroWebSchool" target="_blank" style="color:#60a5fa">القناة</a></li>
+            <li><b>ثروت سامي</b> — Python و SQL: <a
+                href="https://www.youtube.com/results?search_query=%D8%AB%D8%B1%D9%88%D8%AA+%D8%B3%D8%A7%D9%85%D9%8A"
+                target="_blank" style="color:#60a5fa">القناة</a></li>
+            <li><b>يحيى Tech</b> — أساسيات البرمجة و Python و SQL: <a
+                href="https://www.youtube.com/results?search_query=Yehia+Tech+%D9%8A%D8%AD%D9%8A%D9%89+tech"
+                target="_blank" style="color:#60a5fa">القناة</a></li>
+            <li><b>Codezilla</b> — Python من الصفر للاحتراف: <a
+                href="https://www.youtube.com/results?search_query=Codezilla" target="_blank"
+                style="color:#60a5fa">القناة</a></li>
+            <li><b>Programming Advices (محمد أبو هدهود)</b> — أساسيات البرمجة وقواعد البيانات: <a
+                href="https://www.youtube.com/@ProgrammingAdvices" target="_blank" style="color:#60a5fa">القناة</a></li>
+            <li><b>السيرشجي (ElSearshgy)</b> — Excel و Power BI و DAX وتحليل البيانات: <a
+                href="https://www.youtube.com/results?search_query=%D8%A7%D9%84%D8%B3%D9%8A%D8%B1%D8%B4%D8%AC%D9%89"
+                target="_blank" style="color:#60a5fa">القناة</a></li>
+            <li><b>Mazen Analytics</b> — مشاريع تحليل بيانات وفهم البيزنس: <a
+                href="https://www.youtube.com/results?search_query=Mazen+Analytics" target="_blank"
+                style="color:#60a5fa">القناة</a></li>
+            <li><b>سهم أكاديمي (Sahm Academy)</b> — Excel / Power BI / SQL / Python بمشاريع: <a
+                href="https://www.youtube.com/results?search_query=%D8%B3%D9%87%D9%85+%D8%A3%D9%83%D8%A7%D8%AF%D9%8A%D9%85%D9%8A"
+                target="_blank" style="color:#60a5fa">القناة</a></li>
+            <li><b>هشام عاصم (Hesham Asem)</b> — Python للداتا و Machine Learning: <a
+                href="https://www.youtube.com/results?search_query=Hesham+Asem" target="_blank"
+                style="color:#60a5fa">القناة</a></li>
+            <li><b>د. أحمد حجاج</b> — الإحصاء والتحليل الإحصائي: <a
+                href="https://www.youtube.com/results?search_query=Dr+Ahmed+Hagag" target="_blank"
+                style="color:#60a5fa">القناة</a></li>
+            <li><b>Mahara-Tech (ITI)</b> — منصة مجانية بشهادات: Excel / SQL / Power BI / Python: <a
+                href="https://maharatech.gov.eg/" target="_blank" style="color:#60a5fa">المنصة</a></li>
+          </ul>
+        </div>
+        <div class="note ar tip">
+          <h4>إزاي تستخدم الـ Roadmap دي؟ (اقرأ دي الأول)</h4>
+          <p>المجال ده مش محتاج تكون مبرمج عشان تبدأ فيه — <b>Excel + SQL + أداة BI</b> كفاية إنك تاخد أول شغل كـ Junior
+            Data Analyst. الـ Python بتيجي بعدين وبتفرّق في الراتب والفرص.</p>
+          <p><b>الترتيب مهم:</b> Excel ← إحصاء ← SQL ← Python ← Power BI ← فهم البيزنس ← مشاريع. كل مرحلة بتبني على
+            اللي قبلها. متنطّش على Power BI قبل ما تفهم SQL، ومتفتحش Python قبل ما تبقى مرتاح في Excel.</p>
+          <p><b>مجاني ولا مدفوع؟</b> كل اللي في الـ Roadmap دي تقدر تخلصه <b>مجانًا 100%</b> وتوصل لمستوى الشغل. المدفوع
+            بيديك 3 حاجات بس: <b>شهادة</b> تحطها على LinkedIn، <b>ترتيب ومنهج جاهز</b> من غير ما تلف، و<b>تمارين
+              مُصحّحة</b>. لو عندك انضباط ذاتي، المجاني كفاية. لو بتحس إنك بتتوه وعايز حد يمسك إيدك، اشترك في حاجة
+            واحدة بس (الأحسن: Google Data Analytics على Coursera أو DataCamp) — مش محتاج أكتر من كده.</p>
+          <p><b>الأسعار التقريبية (نوفمبر 2026 — اتأكد من الصفحة نفسها قبل ما تدفع):</b></p>
+          <table class="price">
+            <tr>
+              <th>المنصة</th>
+              <th>السعر التقريبي</th>
+              <th>ملاحظة</th>
+            </tr>
+            <tr>
+              <td>Coursera (Google / IBM certificates)</td>
+              <td>≈ 49$ / شهر، أو Coursera Plus سنوي</td>
+              <td>فيه <b>Financial Aid</b> مجاني بالكامل لو قدّمت عليه (بياخد حوالي أسبوعين)</td>
+            </tr>
+            <tr>
+              <td>DataCamp</td>
+              <td>≈ 25$ / شهر (سنوي)، وبيعملوا خصومات كتير</td>
+              <td>أول Chapter من كل كورس مجاني</td>
+            </tr>
+            <tr>
+              <td>Udemy</td>
+              <td>10–20$ للكورس وقت الخصومات (دايمًا فيه خصم)</td>
+              <td>متشتريش كورس بسعره الأصلي أبدًا</td>
+            </tr>
+            <tr>
+              <td>Mahara-Tech (ITI)</td>
+              <td>مجاني + شهادة</td>
+              <td>محتوى عربي من معهد ITI المصري</td>
+            </tr>
+            <tr>
+              <td>Microsoft Learn</td>
+              <td>المحتوى مجاني — امتحان PL-300 مدفوع</td>
+              <td>أهم شهادة لـ Power BI</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- PHASE 1 : EXCEL -->
+    <section class="phase" id="p1" style="--pc:var(--p1)">
+      <div class="phead">
+        <div class="pnum">1</div>
+        <div class="ptitle">
+          <h2>Excel &amp; Google Sheets</h2>
+          <div class="stars">★★★★★ <small>core · 3–4 weeks</small></div>
+        </div>
+        <div class="chev">▼</div>
+      </div>
+      <div class="pbody">
+        <div class="goal"><b>Goal:</b> Excel is the #1 tool in every company's reporting. Master formulas, lookups,
+          pivot tables and charts until you can turn a raw sheet into a clean dashboard. <b>Completion target:</b>
+          build a sales dashboard from raw data without googling every step.</div>
+        <div class="videos">
+          <a class="ytbtn ar"
+            href="https://www.youtube.com/results?search_query=%D8%A7%D9%84%D8%B3%D9%8A%D8%B1%D8%B4%D8%AC%D9%89+%D8%AA%D8%B9%D9%84%D9%85+%D8%A7%D8%B3%D8%A7%D8%B3%D9%8A%D8%A7%D8%AA+%D8%A7%D9%84%D8%A7%D9%83%D8%B3%D9%84&sp=EgIQAw%253D%253D"
+            target="_blank"><span class="yi"></span>Excel من الصفر — السيرشجي (ElSearshgy) <span
+              class="tag free">FREE</span></a>
+          <a class="ytbtn ar" href="https://maharatech.gov.eg/course/search.php?search=Excel" target="_blank"><span
+              class="yi"></span>Excel for Data Analysis — Mahara-Tech (ITI) <span class="tag free">FREE +
+              شهادة</span></a>
+          <a class="ytbtn"
+            href="https://www.youtube.com/results?search_query=Alex+The+Analyst+Excel+Data+Analysis+Pivot+Tables+Lookups+Data+Cleaning+3+hour"
+            target="_blank"><span class="yi"></span>Excel for Data Analysis in 3 hours — Alex The Analyst <span
+              class="tag free">FREE</span></a>
+          <a class="ytbtn" href="https://www.youtube.com/@LeilaGharani" target="_blank"><span class="yi"></span>Leila
+            Gharani — Excel channel <span class="tag free">FREE</span></a>
+          <a class="ytbtn" href="https://www.youtube.com/@MoChen1" target="_blank"><span class="yi"></span>Mo Chen —
+            Excel &amp; Data Analytics <span class="tag free">FREE</span></a>
+          <a class="doclink ar"
+            href="https://www.udemy.com/courses/search/?q=%D8%A7%D9%83%D8%B3%D9%84+%D9%85%D9%86+%D8%A7%D9%84%D8%B5%D9%81%D8%B1+%D9%84%D9%84%D8%A7%D8%AD%D8%AA%D8%B1%D8%A7%D9%81&lang=ar&sort=highest-rated"
+            target="_blank">Udemy — كورسات Excel بالعربي (أعلى تقييم) <span class="tag paid">PAID</span></a>
+          <a class="doclink" href="https://www.coursera.org/learn/excel-essentials-ar" target="_blank">Coursera —
+            Excel Essentials (بالعربي) <span class="tag paid">PAID</span></a>
+          <a class="doclink" href="https://www.xelplus.com/courses/" target="_blank">Leila Gharani — XelPlus courses
+            <span class="tag paid">PAID</span></a>
+        </div>
+        <div class="grp">
+          <h3>Basics</h3>
+          <div class="chips">
+            <a class="chip" href="https://support.microsoft.com/en-us/office/excel-video-training-9bc05390-e94c-46af-a5b3-d7c22f6990bb"
+              target="_blank">Excel video training (Microsoft)</a>
+            <a class="chip" href="https://exceljet.net/formulas" target="_blank">Formulas</a>
+            <a class="chip" href="https://exceljet.net/articles/excel-cell-references" target="_blank">Absolute vs
+              relative refs ($A$1)</a>
+            <a class="chip" href="https://exceljet.net/functions/sum-function" target="_blank">SUM / AVERAGE / COUNT</a>
+            <a class="chip" href="https://exceljet.net/functions/if-function" target="_blank">IF</a>
+            <a class="chip" href="https://exceljet.net/functions/sumifs-function" target="_blank">SUMIFS /
+              COUNTIFS</a>
+            <a class="chip" href="https://exceljet.net/functions/text-function" target="_blank">Text &amp; Date
+              functions</a>
+          </div>
+        </div>
+        <div class="grp">
+          <h3>Intermediate — lookups &amp; cleaning</h3>
+          <div class="chips">
+            <a class="chip" href="https://exceljet.net/functions/vlookup-function" target="_blank">VLOOKUP</a>
+            <a class="chip" href="https://exceljet.net/functions/xlookup-function" target="_blank">XLOOKUP</a>
+            <a class="chip" href="https://exceljet.net/functions/index-function" target="_blank">INDEX + MATCH</a>
+            <a class="chip" href="https://exceljet.net/functions/iferror-function" target="_blank">IFERROR</a>
+            <a class="chip"
+              href="https://support.microsoft.com/en-us/office/use-conditional-formatting-to-highlight-information-fed60dfa-1d3f-4e2b-9fe4-5ec1b6d24d5a"
+              target="_blank">Conditional formatting</a>
+            <a class="chip"
+              href="https://support.microsoft.com/en-us/office/apply-data-validation-to-cells-29fecbcc-d1b9-42c1-9d76-eff3ce5f7249"
+              target="_blank">Data validation</a>
+            <a class="chip"
+              href="https://support.microsoft.com/en-us/office/find-and-remove-duplicates-00e35bea-b46a-4d5d-b28e-66a552dc138d"
+              target="_blank">Remove duplicates</a>
+            <a class="chip"
+              href="https://support.microsoft.com/en-us/office/split-text-into-different-columns-with-the-convert-text-to-columns-wizard-30b14928-5550-41f5-97ca-7a3e9c363ed7"
+              target="_blank">Text to columns</a>
+          </div>
+        </div>
+        <div class="grp">
+          <h3>Advanced — analysis tools</h3>
+          <div class="chips">
+            <a class="chip"
+              href="https://support.microsoft.com/en-us/office/create-a-pivottable-to-analyze-worksheet-data-a9a84538-bfe9-40a9-a8e9-f99134456576"
+              target="_blank">Pivot Tables (very important)</a>
+            <a class="chip"
+              href="https://support.microsoft.com/en-us/office/create-a-chart-from-start-to-finish-0baf399e-dd61-4e18-8a73-b3fd5d5680c2"
+              target="_blank">Charts</a>
+            <a class="chip" href="https://learn.microsoft.com/en-us/power-query/power-query-what-is-power-query"
+              target="_blank">Power Query (Get &amp; Transform)</a>
+            <a class="chip" href="https://support.microsoft.com/en-us/office/power-pivot-overview-and-learning-f9001958-7901-4caa-ad80-028a6d2432ed"
+              target="_blank">Power Pivot</a>
+            <a class="chip" href="https://exceljet.net/articles/dynamic-array-formulas-in-excel" target="_blank">Dynamic
+              arrays (FILTER, UNIQUE, SORT)</a>
+            <a class="chip" href="https://support.google.com/docs/answer/3093281" target="_blank">Google Sheets —
+              QUERY function</a>
+          </div>
+        </div>
+        <div class="note ar">
+          <h4>ملاحظة مهمة عن الـ Phase دي</h4>
+          <p>ناس كتير بتستقل بـ Excel وتقول «أنا عارفه». الحقيقة إن 80% من شغل الـ Data Analyst في الشركات المصرية
+            والخليجية لسه بيتعمل على Excel. اللي بيفرّق مش إنك تعرف تكتب SUM، لكن إنك تاخد شيت فيه 50 ألف صف غلط
+            ومكرر، <b>تنضّفه</b>، تعمل عليه <b>Pivot</b>، وتطلع منه <b>Dashboard</b> المدير يفهمه في دقيقة.</p>
+          <p>ركّز أكتر حاجة على: <b>Pivot Tables</b>، <b>XLOOKUP / INDEX-MATCH</b>، و<b>Power Query</b>. التلاتة دول
+            هما اللي بيتسألوا عليهم في الإنترفيو.</p>
+        </div>
+        <div class="note proj">
+          <h4>🎯 Practice Project — Sales Dashboard in Excel</h4>
+          <p>Download a raw sales dataset (orders, customers, products). Clean it with Power Query (fix dates, remove
+            duplicates, split names), add a lookup column for region, then build 4 pivot tables (sales by month, by
+            product, by region, top 10 customers) and turn them into a one-page dashboard with slicers.</p>
+          <div class="tutrow">
+            <a class="ptutorial eng" href="https://mavenanalytics.io/data-playground" target="_blank">▶ Datasets —
+              Maven Analytics Data Playground (free)</a>
+            <a class="ptutorial eng"
+              href="https://www.youtube.com/results?search_query=excel+sales+dashboard+tutorial+pivot+tables+slicers"
+              target="_blank">▶ Tutorial — Excel sales dashboard (YouTube)</a>
+          </div>
+        </div>
+        <label class="check"><input type="checkbox" data-phase> Mark Phase 1 complete</label>
+      </div>
+    </section>
+
+    <!-- PHASE 2 : STATISTICS -->
+    <section class="phase" id="p2" style="--pc:var(--p2)">
+      <div class="phead">
+        <div class="pnum">2</div>
+        <div class="ptitle">
+          <h2>Statistics &amp; Analytical Thinking</h2>
+          <div class="stars">★★★★ <small>foundation · 2–3 weeks</small></div>
+        </div>
+        <div class="chev">▼</div>
+      </div>
+      <div class="pbody">
+        <div class="goal"><b>Goal:</b> Not a math degree — just enough statistics to describe data correctly, spot
+          nonsense, and say "this difference is real / not real" with confidence. Everything here is used later in
+          Python and Power BI.</div>
+        <div class="videos">
+          <a class="ytbtn ar"
+            href="https://www.youtube.com/results?search_query=Dr+Ahmed+Hagag+Statistical+Analysis+%D8%A7%D9%84%D8%AA%D8%AD%D9%84%D9%8A%D9%84+%D8%A7%D9%84%D8%A5%D8%AD%D8%B5%D8%A7%D8%A6%D9%8A&sp=EgIQAw%253D%253D"
+            target="_blank"><span class="yi"></span>التحليل الإحصائي — د. أحمد حجاج <span class="tag free">FREE</span></a>
+          <a class="ytbtn ar" href="https://ar.khanacademy.org/math/statistics-probability" target="_blank"><span
+              class="yi"></span>الإحصاء والاحتمالات — Khan Academy بالعربي <span class="tag free">FREE</span></a>
+          <a class="ytbtn" href="https://www.youtube.com/@statquest" target="_blank"><span class="yi"></span>StatQuest
+            — Statistics Fundamentals (Josh Starmer) <span class="tag free">FREE</span></a>
+          <a class="ytbtn"
+            href="https://www.youtube.com/results?search_query=freeCodeCamp+Statistics+full+course+university+level"
+            target="_blank"><span class="yi"></span>Statistics — freeCodeCamp 8h course <span
+              class="tag free">FREE</span></a>
+          <a class="doclink" href="https://www.khanacademy.org/math/statistics-probability" target="_blank">↗ Khan
+            Academy Statistics (EN) <span class="tag free">FREE</span></a>
+          <a class="doclink ar"
+            href="https://www.udemy.com/courses/search/?q=%D8%A7%D9%84%D8%A5%D8%AD%D8%B5%D8%A7%D8%A1+%D9%84%D8%B9%D9%84%D9%85+%D8%A7%D9%84%D8%A8%D9%8A%D8%A7%D9%86%D8%A7%D8%AA&lang=ar&sort=highest-rated"
+            target="_blank">Udemy — مبادئ الإحصاء لعلم البيانات (عربي) <span class="tag paid">PAID</span></a>
+          <a class="doclink" href="https://www.coursera.org/specializations/statistics-with-python" target="_blank">
+            Coursera — Statistics with Python (U. Michigan) <span class="tag paid">PAID</span></a>
+        </div>
+        <div class="grp">
+          <h3>Descriptive statistics</h3>
+          <div class="chips">
+            <a class="chip" href="https://www.khanacademy.org/math/statistics-probability/displaying-describing-data"
+              target="_blank">Types of data &amp; displaying data</a>
+            <a class="chip"
+              href="https://www.khanacademy.org/math/statistics-probability/summarizing-quantitative-data"
+              target="_blank">Mean / Median / Mode</a>
+            <a class="chip"
+              href="https://www.khanacademy.org/math/statistics-probability/summarizing-quantitative-data"
+              target="_blank">Variance &amp; Std deviation</a>
+            <a class="chip"
+              href="https://www.khanacademy.org/math/statistics-probability/summarizing-quantitative-data"
+              target="_blank">Percentiles &amp; Outliers (box plot)</a>
+            <a class="chip"
+              href="https://www.khanacademy.org/math/statistics-probability/modeling-distributions-of-data"
+              target="_blank">Normal distribution &amp; z-score</a>
+          </div>
+        </div>
+        <div class="grp">
+          <h3>Inferential statistics</h3>
+          <div class="chips">
+            <a class="chip" href="https://www.khanacademy.org/math/statistics-probability/probability-library"
+              target="_blank">Probability basics</a>
+            <a class="chip"
+              href="https://www.khanacademy.org/math/statistics-probability/sampling-distributions-library"
+              target="_blank">Sampling &amp; Central Limit Theorem</a>
+            <a class="chip"
+              href="https://www.khanacademy.org/math/statistics-probability/confidence-intervals-one-sample"
+              target="_blank">Confidence intervals</a>
+            <a class="chip"
+              href="https://www.khanacademy.org/math/statistics-probability/significance-tests-one-sample"
+              target="_blank">Hypothesis testing &amp; p-value</a>
+            <a class="chip"
+              href="https://www.khanacademy.org/math/statistics-probability/describing-relationships-quantitative-data"
+              target="_blank">Correlation &amp; Linear regression</a>
+            <a class="chip" href="https://www.optimizely.com/optimization-glossary/ab-testing/" target="_blank">A/B
+              testing</a>
+          </div>
+        </div>
+        <div class="note ar tip">
+          <h4>متخافش من الإحصاء</h4>
+          <p>مش مطلوب منك تحفظ معادلات. المطلوب تفهم <b>3 أسئلة</b>: (1) البيانات دي شكلها إيه؟ (متوسط، انتشار، شواذ)
+            (2) الفرق اللي أنا شايفه ده حقيقي ولا صدفة؟ (hypothesis test / p-value) (3) الحاجتين دول مرتبطين ولا لأ؟
+            (correlation). ولو فهمت إن <b>Correlation ≠ Causation</b> يبقى أنت قدام 70% من الناس في المجال.</p>
+          <p>StatQuest أحسن قناة في العالم تشرح الإحصاء بصريًا — حتى لو إنجليزيتك متوسطة، الرسومات بتوصّل الفكرة.</p>
+        </div>
+        <div class="note proj">
+          <h4>🎯 Practice Project — Describe a dataset in Excel</h4>
+          <p>Take the sales dataset from Phase 1. Compute mean, median, std-dev and percentiles of order value, draw a
+            histogram and a box plot, find the outliers, and check the correlation between discount and quantity. Write
+            5 sentences of conclusions a manager could read. Then redo it later in Python (Phase 4) — same analysis,
+            new tool.</p>
+          <div class="tutrow">
+            <a class="ptutorial eng"
+              href="https://support.microsoft.com/en-us/office/use-the-analysis-toolpak-to-perform-complex-data-analysis-6c67ccf0-f4a9-487c-8dec-bdb5a2cefab6"
+              target="_blank">▶ Guide — Excel Analysis ToolPak (descriptive stats)</a>
+          </div>
+        </div>
+        <label class="check"><input type="checkbox" data-phase> Mark Phase 2 complete</label>
+      </div>
+    </section>
+
+    <!-- PHASE 3 : SQL -->
+    <section class="phase" id="p3" style="--pc:var(--p3)">
+      <div class="phead">
+        <div class="pnum">3</div>
+        <div class="ptitle">
+          <h2>SQL — the most requested skill</h2>
+          <div class="stars">★★★★★ <small>core · 4–6 weeks</small></div>
+        </div>
+        <div class="chev">▼</div>
+      </div>
+      <div class="pbody">
+        <div class="goal"><b>Goal:</b> Pull exactly the data you need from any database. SQL appears in nearly every
+          Data Analyst job post. <b>Completion target:</b> solve LeetCode's SQL 50 and write a multi-join query with a
+          window function without looking anything up.</div>
+        <div class="videos">
+          <a class="ytbtn ar"
+            href="https://www.youtube.com/results?search_query=Elzero+Web+School+Learn+MySQL+In+Arabic&sp=EgIQAw%253D%253D"
+            target="_blank"><span class="yi"></span>Learn MySQL in Arabic — Elzero Web School <span
+              class="tag free">FREE</span></a>
+          <a class="ytbtn ar" href="https://maharatech.gov.eg/course/search.php?search=SQL" target="_blank"><span
+              class="yi"></span>SQL / Databases — Mahara-Tech (ITI) <span class="tag free">FREE + شهادة</span></a>
+          <a class="ytbtn ar"
+            href="https://www.youtube.com/results?search_query=Yehia+Tech+%D9%8A%D8%AD%D9%8A%D9%89+SQL+%D9%82%D9%88%D8%A7%D8%B9%D8%AF+%D8%A7%D9%84%D8%A8%D9%8A%D8%A7%D9%86%D8%A7%D8%AA&sp=EgIQAw%253D%253D"
+            target="_blank"><span class="yi"></span>SQL وقواعد البيانات — يحيى Tech <span class="tag free">FREE</span></a>
+          <a class="ytbtn ar"
+            href="https://www.youtube.com/results?search_query=%D8%AB%D8%B1%D9%88%D8%AA+%D8%B3%D8%A7%D9%85%D9%8A+SQL+MySQL+%D9%83%D9%88%D8%B1%D8%B3&sp=EgIQAw%253D%253D"
+            target="_blank"><span class="yi"></span>SQL / MySQL — ثروت سامي <span class="tag free">FREE</span></a>
+          <a class="ytbtn" href="https://www.lukebarousse.com/sql" target="_blank"><span class="yi"></span>SQL for Data
+            Analytics (4h) — Luke Barousse <span class="tag mix">FREEMIUM</span></a>
+          <a class="ytbtn" href="https://www.datawithbaraa.com/wiki/sql" target="_blank"><span class="yi"></span>SQL
+            Full Course 30h — Data With Baraa <span class="tag free">FREE</span></a>
+          <a class="ytbtn" href="https://www.youtube.com/watch?v=HXV3zeQKqGY" target="_blank"><span
+              class="yi"></span>SQL Full Course — freeCodeCamp <span class="tag free">FREE</span></a>
+          <a class="ytbtn"
+            href="https://www.youtube.com/results?search_query=Alex+The+Analyst+MySQL+for+data+analytics+bootcamp&sp=EgIQAw%253D%253D"
+            target="_blank"><span class="yi"></span>MySQL series — Alex The Analyst <span
+              class="tag free">FREE</span></a>
+          <a class="doclink ar"
+            href="https://www.udemy.com/courses/search/?q=SQL+%D8%A8%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A&lang=ar&sort=highest-rated"
+            target="_blank">Udemy — كورسات SQL بالعربي <span class="tag paid">PAID</span></a>
+          <a class="doclink" href="https://www.datacamp.com/tracks/data-analyst-in-sql" target="_blank">DataCamp —
+            Data Analyst in SQL track <span class="tag paid">PAID</span></a>
+          <a class="doclink" href="https://www.udemy.com/course/the-complete-sql-bootcamp/" target="_blank">Udemy — The
+            Complete SQL Bootcamp (Jose Portilla) <span class="tag paid">PAID</span></a>
+        </div>
+        <div class="grp">
+          <h3>Database concepts</h3>
+          <div class="chips">
+            <a class="chip" href="https://www.w3schools.com/sql/sql_create_table.asp" target="_blank">Tables</a>
+            <a class="chip" href="https://www.w3schools.com/sql/sql_datatypes.asp" target="_blank">Data types</a>
+            <a class="chip" href="https://www.w3schools.com/sql/sql_primarykey.asp" target="_blank">Primary Keys</a>
+            <a class="chip" href="https://www.w3schools.com/sql/sql_foreignkey.asp" target="_blank">Foreign Keys</a>
+            <a class="chip" href="https://learn.microsoft.com/en-us/power-bi/guidance/star-schema"
+              target="_blank">Fact &amp; Dimension tables (star schema)</a>
+          </div>
+        </div>
+        <div class="grp">
+          <h3>SQL basics</h3>
+          <div class="chips">
+            <a class="chip" href="https://www.w3schools.com/sql/sql_select.asp" target="_blank">SELECT</a>
+            <a class="chip" href="https://www.w3schools.com/sql/sql_where.asp" target="_blank">WHERE</a>
+            <a class="chip" href="https://www.w3schools.com/sql/sql_orderby.asp" target="_blank">ORDER BY</a>
+            <a class="chip" href="https://www.w3schools.com/sql/sql_like.asp" target="_blank">LIKE / IN / BETWEEN</a>
+            <a class="chip" href="https://www.w3schools.com/sql/sql_count_avg_sum.asp" target="_blank">Aggregates
+              (COUNT, SUM, AVG)</a>
+            <a class="chip" href="https://www.w3schools.com/sql/sql_groupby.asp" target="_blank">GROUP BY</a>
+            <a class="chip" href="https://www.w3schools.com/sql/sql_having.asp" target="_blank">HAVING</a>
+            <a class="chip" href="https://www.w3schools.com/sql/sql_case.asp" target="_blank">CASE</a>
+          </div>
+        </div>
+        <div class="grp">
+          <h3>Intermediate / Advanced (what interviews ask)</h3>
+          <div class="chips">
+            <a class="chip" href="https://www.w3schools.com/sql/sql_join.asp" target="_blank">JOINs (inner, left,
+              full)</a>
+            <a class="chip" href="https://www.w3schools.com/sql/sql_union.asp" target="_blank">UNION</a>
+            <a class="chip" href="https://www.w3schools.com/sql/sql_subqueries.asp" target="_blank">Subqueries</a>
+            <a class="chip" href="https://learnsql.com/blog/what-is-common-table-expression/" target="_blank">CTEs
+              (WITH)</a>
+            <a class="chip" href="https://mode.com/sql-tutorial/sql-window-functions/" target="_blank">Window
+              functions (ROW_NUMBER, RANK, LAG)</a>
+            <a class="chip" href="https://www.w3schools.com/sql/sql_dates.asp" target="_blank">Date functions</a>
+            <a class="chip" href="https://www.w3schools.com/sql/sql_view.asp" target="_blank">Views</a>
+            <a class="chip" href="https://www.w3schools.com/sql/sql_create_index.asp" target="_blank">Indexes</a>
+            <a class="chip" href="https://mode.com/sql-tutorial/sql-performance-tuning/" target="_blank">Query
+              performance</a>
+          </div>
+        </div>
+        <div class="grp">
+          <h3>Practice platforms (do these every day)</h3>
+          <div class="chips">
+            <a class="chip" href="https://sqlbolt.com/" target="_blank">SQLBolt (interactive, start here)</a>
+            <a class="chip" href="https://sqlzoo.net/" target="_blank">SQLZoo</a>
+            <a class="chip" href="https://mode.com/sql-tutorial/" target="_blank">Mode SQL Tutorial</a>
+            <a class="chip" href="https://leetcode.com/studyplan/top-sql-50/" target="_blank">LeetCode SQL 50</a>
+            <a class="chip" href="https://datalemur.com/" target="_blank">DataLemur (interview questions)</a>
+            <a class="chip" href="https://www.stratascratch.com/" target="_blank">StrataScratch</a>
+            <a class="chip" href="https://www.hackerrank.com/domains/sql" target="_blank">HackerRank SQL</a>
+          </div>
+        </div>
+        <div class="note ar">
+          <h4>ملاحظة عن الـ Phase دي</h4>
+          <p>SQL هي <b>أهم مهارة</b> في الـ Roadmap كلها. لو هتتقن حاجة واحدة بس، خليها SQL. أي شركة عندها قاعدة
+            بيانات، وأي إنترفيو هيسألك تكتب Query فيها JOIN و GROUP BY وغالبًا Window Function.</p>
+          <p>الفرق بين MySQL و PostgreSQL و SQL Server بسيط جدًا في الأساسيات — اتعلم أي واحد وهتقدر تشتغل بالباقي.
+            الـ Data With Baraa (30 ساعة) هو أكمل كورس مجاني موجود حاليًا؛ ولو عايز حاجة أقصر ابدأ بـ Luke Barousse (4
+            ساعات) وبعدها حل تمارين.</p>
+          <p><b>القاعدة الذهبية:</b> كل يوم 3 مسائل SQL على SQLBolt أو LeetCode. التكرار هو اللي بيثبّت.</p>
+        </div>
+        <div class="note proj">
+          <h4>🎯 Practice Project — Analyze a real database end-to-end</h4>
+          <p>Load a sample database (Chinook music store, or Northwind). Answer 15 business questions with SQL: top 10
+            customers by revenue, monthly sales trend, best-selling product per country (window function), customers
+            who never ordered (LEFT JOIN), and month-over-month growth (LAG). Save every query in a GitHub repo with a
+            README explaining the findings.</p>
+          <div class="tutrow">
+            <a class="ptutorial eng" href="https://github.com/lerocha/chinook-database" target="_blank">▶ Dataset —
+              Chinook database</a>
+            <a class="ptutorial eng" href="https://www.lukebarousse.com/sql" target="_blank">▶ Guided project — Luke
+              Barousse data jobs project</a>
+            <a class="ptutorial eng" href="https://www.datawithbaraa.com/" target="_blank">▶ Projects — Data With Baraa
+              (SQL data warehouse &amp; EDA)</a>
+          </div>
+        </div>
+        <label class="check"><input type="checkbox" data-phase> Mark Phase 3 complete</label>
+      </div>
+    </section>
+
+    <!-- PHASE 4 : PYTHON -->
+    <section class="phase" id="p4" style="--pc:var(--p4)">
+      <div class="phead">
+        <div class="pnum">4</div>
+        <div class="ptitle">
+          <h2>Python for Data Analysis</h2>
+          <div class="stars">★★★★★ <small>core · 6–8 weeks</small></div>
+        </div>
+        <div class="chev">▼</div>
+      </div>
+      <div class="pbody">
+        <div class="goal"><b>Goal:</b> Learn just enough Python, then live inside <b>Pandas</b>. Clean, transform,
+          merge and visualize data that is too big or too messy for Excel. <b>Completion target:</b> a full Exploratory
+          Data Analysis (EDA) notebook on a raw dataset.</div>
+        <div class="videos">
+          <a class="ytbtn ar" href="https://www.youtube.com/playlist?list=PLDoPjvoNmBAyE_gei5d18qkfIe-Z8mocs"
+            target="_blank"><span class="yi"></span>Learn Python in Arabic — Elzero Web School <span
+              class="tag free">FREE</span></a>
+          <a class="ytbtn ar"
+            href="https://www.youtube.com/results?search_query=Codezilla+Mastering+Python+%D8%A8%D8%A7%D9%8A%D8%AB%D9%88%D9%86&sp=EgIQAw%253D%253D"
+            target="_blank"><span class="yi"></span>Mastering Python — Codezilla <span class="tag free">FREE</span></a>
+          <a class="ytbtn ar"
+            href="https://www.youtube.com/results?search_query=%D8%AB%D8%B1%D9%88%D8%AA+%D8%B3%D8%A7%D9%85%D9%8A+%D9%83%D9%88%D8%B1%D8%B3+%D8%A8%D8%A7%D9%8A%D8%AB%D9%88%D9%86+%D9%83%D8%A7%D9%85%D9%84&sp=EgIQAw%253D%253D"
+            target="_blank"><span class="yi"></span>كورس Python كامل — ثروت سامي <span class="tag free">FREE</span></a>
+          <a class="ytbtn ar"
+            href="https://www.youtube.com/results?search_query=Yehia+Tech+%D9%8A%D8%AD%D9%8A%D9%89+Python+%D8%A8%D8%A7%D9%8A%D8%AB%D9%88%D9%86&sp=EgIQAw%253D%253D"
+            target="_blank"><span class="yi"></span>Python — يحيى Tech <span class="tag free">FREE</span></a>
+          <a class="ytbtn ar"
+            href="https://www.youtube.com/results?search_query=Hesham+Asem+%D9%87%D8%B4%D8%A7%D9%85+%D8%B9%D8%A7%D8%B5%D9%85+Python+Pandas+Data&sp=EgIQAw%253D%253D"
+            target="_blank"><span class="yi"></span>Python للداتا — هشام عاصم <span class="tag free">FREE</span></a>
+          <a class="ytbtn ar"
+            href="https://www.youtube.com/results?search_query=Pandas+%D8%A8%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A+%D8%AA%D8%AD%D9%84%D9%8A%D9%84+%D8%A7%D9%84%D8%A8%D9%8A%D8%A7%D9%86%D8%A7%D8%AA+%D8%A8%D8%A7%D9%8A%D8%AB%D9%88%D9%86&sp=EgIQAw%253D%253D"
+            target="_blank"><span class="yi"></span>Pandas بالعربي — بلايليستات يوتيوب <span
+              class="tag free">FREE</span></a>
+          <a class="ytbtn" href="https://www.lukebarousse.com/python" target="_blank"><span class="yi"></span>Python
+            for Data Analytics (9h) — Luke Barousse <span class="tag mix">FREEMIUM</span></a>
+          <a class="ytbtn" href="https://www.youtube.com/watch?v=r-uOLxNrNk8" target="_blank"><span
+              class="yi"></span>Data Analysis with Python — freeCodeCamp <span class="tag free">FREE</span></a>
+          <a class="ytbtn" href="https://www.youtube.com/@coreyms" target="_blank"><span class="yi"></span>Pandas
+            series — Corey Schafer <span class="tag free">FREE</span></a>
+          <a class="ytbtn" href="https://www.youtube.com/@KeithGalli" target="_blank"><span class="yi"></span>Pandas &amp;
+            real-world data — Keith Galli <span class="tag free">FREE</span></a>
+          <a class="doclink" href="https://www.freecodecamp.org/learn/data-analysis-with-python/" target="_blank">
+            freeCodeCamp — Data Analysis with Python certification <span class="tag free">FREE</span></a>
+          <a class="doclink" href="https://www.kaggle.com/learn/pandas" target="_blank">Kaggle Learn — Pandas <span
+              class="tag free">FREE</span></a>
+          <a class="doclink ar" href="https://www.coursera.org/learn/data-analysis-python-pandas-ar" target="_blank">
+            Coursera — تحليل البيانات بـ Pandas (مشروع موجّه بالعربي) <span class="tag paid">PAID</span></a>
+          <a class="doclink" href="https://www.datacamp.com/tracks/data-analyst-with-python" target="_blank">DataCamp —
+            Data Analyst with Python track <span class="tag paid">PAID</span></a>
+          <a class="doclink"
+            href="https://www.udemy.com/course/python-for-data-science-and-machine-learning-bootcamp/"
+            target="_blank">Udemy — Python for Data Science Bootcamp (Jose Portilla) <span
+              class="tag paid">PAID</span></a>
+          <a class="doclink" href="https://365datascience.com/" target="_blank">365 Data Science <span
+              class="tag paid">PAID</span></a>
+        </div>
+        <div class="grp">
+          <h3>Python basics (don't over-study — 2 weeks max)</h3>
+          <div class="chips">
+            <a class="chip" href="https://www.w3schools.com/python/python_variables.asp" target="_blank">Variables &amp;
+              types</a>
+            <a class="chip" href="https://www.w3schools.com/python/python_lists.asp" target="_blank">Lists &amp;
+              Dicts</a>
+            <a class="chip" href="https://www.w3schools.com/python/python_conditions.asp" target="_blank">Conditions</a>
+            <a class="chip" href="https://www.w3schools.com/python/python_for_loops.asp" target="_blank">Loops</a>
+            <a class="chip" href="https://www.w3schools.com/python/python_functions.asp" target="_blank">Functions</a>
+            <a class="chip" href="https://www.w3schools.com/python/python_lists_comprehension.asp" target="_blank">List
+              comprehensions</a>
+            <a class="chip" href="https://jupyter.org/" target="_blank">Jupyter Notebook</a>
+            <a class="chip" href="https://colab.research.google.com/" target="_blank">Google Colab (no install)</a>
+          </div>
+        </div>
+        <div class="grp">
+          <h3>The data stack</h3>
+          <div class="chips">
+            <a class="chip" href="https://numpy.org/doc/stable/user/absolute_beginners.html" target="_blank">NumPy
+              basics</a>
+            <a class="chip" href="https://pandas.pydata.org/docs/user_guide/10min.html" target="_blank">Pandas — 10
+              minutes</a>
+            <a class="chip" href="https://pandas.pydata.org/docs/user_guide/indexing.html" target="_blank">Selecting
+              &amp; filtering (loc / iloc)</a>
+            <a class="chip" href="https://pandas.pydata.org/docs/user_guide/groupby.html" target="_blank">GroupBy</a>
+            <a class="chip" href="https://pandas.pydata.org/docs/user_guide/merging.html" target="_blank">Merge /
+              Join / Concat</a>
+            <a class="chip" href="https://pandas.pydata.org/docs/user_guide/missing_data.html" target="_blank">Missing
+              data</a>
+            <a class="chip" href="https://pandas.pydata.org/docs/user_guide/reshaping.html" target="_blank">Pivot &amp;
+              Melt</a>
+            <a class="chip" href="https://pandas.pydata.org/docs/user_guide/timeseries.html" target="_blank">Dates
+              &amp; time series</a>
+            <a class="chip" href="https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf" target="_blank">Pandas cheat
+              sheet (PDF)</a>
+          </div>
+        </div>
+        <div class="grp">
+          <h3>Visualization &amp; EDA</h3>
+          <div class="chips">
+            <a class="chip" href="https://matplotlib.org/stable/tutorials/pyplot.html" target="_blank">Matplotlib</a>
+            <a class="chip" href="https://seaborn.pydata.org/tutorial.html" target="_blank">Seaborn</a>
+            <a class="chip" href="https://plotly.com/python/getting-started/" target="_blank">Plotly (interactive)</a>
+            <a class="chip" href="https://www.kaggle.com/learn/data-cleaning" target="_blank">Data cleaning
+              (Kaggle)</a>
+            <a class="chip" href="https://www.kaggle.com/learn/data-visualization" target="_blank">Data visualization
+              (Kaggle)</a>
+            <a class="chip" href="https://pandas.pydata.org/docs/user_guide/io.html" target="_blank">Read CSV / Excel /
+              SQL into Pandas</a>
+          </div>
+        </div>
+        <div class="note ar">
+          <h4>ملاحظة عن الـ Phase دي</h4>
+          <p>الغلطة الشائعة: الناس بتقعد 3 شهور في Python basics (OOP، Decorators، ...) وده <b>مش مطلوب</b> لـ Data
+            Analyst. خلّص الأساسيات (متغيرات، lists، dicts، loops، functions) في أسبوعين وادخل على <b>Pandas</b> فورًا.
+            Pandas هي الـ Excel بتاع البرمجة — نفس الأفكار (جداول، فلترة، Pivot) بس بكود.</p>
+          <p>لو اتعلمت SQL كويس في المرحلة اللي فاتت، Pandas هتبقى سهلة جدًا: <code>groupby</code> = GROUP BY،
+            <code>merge</code> = JOIN، <code>query</code> = WHERE.</p>
+          <p>كورس Luke Barousse مبني على بيانات وظايف حقيقية ومشروع كامل — أفضل بداية. وكورس freeCodeCamp بيديك شهادة
+            مجانية لو حليت المشاريع الخمسة بتاعته.</p>
+        </div>
+        <div class="note proj">
+          <h4>🎯 Practice Project — Full EDA notebook</h4>
+          <p>Pick a messy dataset (Kaggle: Titanic, then a sales or e-commerce dataset). In one Jupyter notebook: load
+            it, inspect types, fix missing values, remove duplicates, create new columns, answer 10 questions with
+            groupby/merge, and draw 6 charts with Seaborn. Finish with a "Key findings" markdown cell. Push it to
+            GitHub and publish the notebook on Kaggle.</p>
+          <div class="tutrow">
+            <a class="ptutorial eng" href="https://www.kaggle.com/datasets" target="_blank">▶ Datasets — Kaggle</a>
+            <a class="ptutorial eng" href="https://www.freecodecamp.org/learn/data-analysis-with-python/"
+              target="_blank">▶ 5 graded projects — freeCodeCamp</a>
+            <a class="ptutorial eng" href="https://www.lukebarousse.com/python" target="_blank">▶ Guided project — Luke
+              Barousse</a>
+          </div>
+        </div>
+        <label class="check"><input type="checkbox" data-phase> Mark Phase 4 complete</label>
+      </div>
+    </section>
+
+    <!-- PHASE 5 : BI TOOLS -->
+    <section class="phase" id="p5" style="--pc:var(--p5)">
+      <div class="phead">
+        <div class="pnum">5</div>
+        <div class="ptitle">
+          <h2>Data Visualization &amp; BI — Power BI (then Tableau)</h2>
+          <div class="stars">★★★★★ <small>core · 4–6 weeks</small></div>
+        </div>
+        <div class="chev">▼</div>
+      </div>
+      <div class="pbody">
+        <div class="goal"><b>Goal:</b> Build interactive dashboards managers actually use. <b>Power BI</b> is the
+          most demanded in Egypt &amp; the Gulf (and it's free on Windows); learn Tableau second. <b>Completion
+            target:</b> a published dashboard with a proper data model and DAX measures.</div>
+        <div class="videos">
+          <a class="ytbtn ar"
+            href="https://www.youtube.com/results?search_query=%D8%A7%D9%84%D8%B3%D9%8A%D8%B1%D8%B4%D8%AC%D9%89+Power+BI+%D9%85%D9%86+%D8%A7%D9%84%D8%B5%D9%81%D8%B1&sp=EgIQAw%253D%253D"
+            target="_blank"><span class="yi"></span>Power BI من الصفر — السيرشجي <span class="tag free">FREE</span></a>
+          <a class="ytbtn ar"
+            href="https://www.youtube.com/results?search_query=AAA+Excel+Power+BI+%D8%A8%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A&sp=EgIQAw%253D%253D"
+            target="_blank"><span class="yi"></span>Power BI بالعربي — AAA Excel <span class="tag free">FREE</span></a>
+          <a class="ytbtn ar" href="https://maharatech.gov.eg/course/search.php?search=Power+BI" target="_blank"><span
+              class="yi"></span>Power BI — Mahara-Tech (ITI) <span class="tag free">FREE + شهادة</span></a>
+          <a class="ytbtn" href="https://www.youtube.com/@GuyInACube" target="_blank"><span class="yi"></span>Guy in a
+            Cube — Power BI (Microsoft MVPs) <span class="tag free">FREE</span></a>
+          <a class="ytbtn"
+            href="https://www.youtube.com/results?search_query=Alex+The+Analyst+Power+BI+tutorials+for+beginners&sp=EgIQAw%253D%253D"
+            target="_blank"><span class="yi"></span>Power BI &amp; Tableau series — Alex The Analyst <span
+              class="tag free">FREE</span></a>
+          <a class="ytbtn" href="https://codebasics.io/courses/data-analysis-projects" target="_blank"><span
+              class="yi"></span>Power BI sales project — codebasics <span class="tag free">FREE</span></a>
+          <a class="doclink"
+            href="https://learn.microsoft.com/en-us/credentials/certifications/power-bi-data-analyst-associate/"
+            target="_blank">Microsoft Learn — PL-300 learning path <span class="tag free">FREE</span></a>
+          <a class="doclink" href="https://www.tableau.com/learn/training" target="_blank">Tableau — free training
+            videos <span class="tag free">FREE</span></a>
+          <a class="doclink ar" href="https://www.udemy.com/course/power-bi-part-1/" target="_blank">Udemy — Power BI
+            بالعربي Part 1 (أحمد سمير) <span class="tag paid">PAID</span></a>
+          <a class="doclink ar" href="https://www.udemy.com/course/advanced-power-bi/" target="_blank">Udemy — Power
+            BI بالعربي Part 2 (Advanced) <span class="tag paid">PAID</span></a>
+          <a class="doclink ar" href="https://www.udemy.com/course/tableau-desktop-full-track-arabic/"
+            target="_blank">Udemy — Tableau Desktop Full Track (عربي) <span class="tag paid">PAID</span></a>
+          <a class="doclink" href="https://mavenanalytics.io/" target="_blank">Maven Analytics — Power BI path <span
+              class="tag paid">PAID</span></a>
+          <a class="doclink" href="https://codebasics.io/bootcamps" target="_blank">codebasics — Data Analytics
+            Bootcamp <span class="tag paid">PAID</span></a>
+          <a class="doclink" href="https://www.sqlbi.com/" target="_blank">SQLBI — DAX (articles free, courses paid)
+            <span class="tag mix">FREEMIUM</span></a>
+        </div>
+        <div class="grp">
+          <h3>Power BI — the 5 pillars</h3>
+          <div class="chips">
+            <a class="chip" href="https://powerbi.microsoft.com/desktop" target="_blank">1. Install Power BI Desktop
+              (free)</a>
+            <a class="chip" href="https://learn.microsoft.com/en-us/power-query/power-query-what-is-power-query"
+              target="_blank">2. Power Query — get &amp; clean data</a>
+            <a class="chip" href="https://learn.microsoft.com/en-us/power-bi/guidance/star-schema" target="_blank">3.
+              Data modeling — star schema &amp; relationships</a>
+            <a class="chip"
+              href="https://learn.microsoft.com/en-us/power-bi/transform-model/desktop-quickstart-learn-dax-basics"
+              target="_blank">4. DAX basics — measures &amp; CALCULATE</a>
+            <a class="chip"
+              href="https://learn.microsoft.com/en-us/power-bi/visuals/power-bi-visualization-types-for-reports-and-q-and-a"
+              target="_blank">5. Visuals &amp; report design</a>
+            <a class="chip" href="https://learn.microsoft.com/en-us/dax/" target="_blank">DAX reference</a>
+            <a class="chip" href="https://learn.microsoft.com/en-us/power-bi/create-reports/desktop-upload-desktop-files"
+              target="_blank">Publish to Power BI Service</a>
+          </div>
+        </div>
+        <div class="grp">
+          <h3>Tableau (second tool)</h3>
+          <div class="chips">
+            <a class="chip" href="https://public.tableau.com/" target="_blank">Tableau Public (free)</a>
+            <a class="chip" href="https://help.tableau.com/current/guides/get-started-tutorial/en-us/get-started-tutorial-home.htm"
+              target="_blank">Get Started tutorial</a>
+            <a class="chip" href="https://www.tableau.com/learn/training" target="_blank">Free training videos</a>
+            <a class="chip" href="https://www.makeovermonday.co.uk/" target="_blank">Makeover Monday (weekly
+              practice)</a>
+          </div>
+        </div>
+        <div class="grp">
+          <h3>Visualization principles (tool-agnostic)</h3>
+          <div class="chips">
+            <a class="chip" href="https://www.data-to-viz.com/" target="_blank">Which chart for which data?</a>
+            <a class="chip" href="https://www.storytellingwithdata.com/" target="_blank">Storytelling with Data</a>
+            <a class="chip" href="https://clauswilke.com/dataviz/" target="_blank">Fundamentals of Data Visualization
+              (free book)</a>
+            <a class="chip" href="https://www.youtube.com/@storytellingwithdata" target="_blank">SWD YouTube channel</a>
+          </div>
+        </div>
+        <div class="note ar">
+          <h4>ملاحظة عن الـ Phase دي</h4>
+          <p>الـ Dashboard الحلو مش اللي فيه 20 شارت ملونة — اللي بيجاوب على سؤال البيزنس في 5 ثواني. 70% من الشغل
+            الحقيقي في Power BI بيحصل في <b>Power Query</b> (تنضيف) و<b>Data Model</b> (علاقات صح) قبل ما ترسم أي
+            حاجة. لو الـ Model غلط، الـ DAX هيطلع أرقام غلط ومش هتعرف ليه.</p>
+          <p>أهم 5 دوال DAX تتقنها: <code>SUM</code>، <code>CALCULATE</code>، <code>FILTER</code>،
+            <code>ALL</code>، و<code>DIVIDE</code> + دوال الوقت (<code>DATEADD</code>، <code>SAMEPERIODLASTYEAR</code>).
+          </p>
+          <p>شهادة <b>PL-300</b> من Microsoft هي أكتر شهادة بتفرق في طلبات الوظايف في مصر والخليج — المحتوى مجاني على
+            Microsoft Learn، والامتحان بس هو المدفوع.</p>
+        </div>
+        <div class="note proj">
+          <h4>🎯 Practice Project — Executive Sales Dashboard in Power BI</h4>
+          <p>Use the same sales data from Phase 1 (or the codebasics / Maven dataset). Build a star schema (fact sales +
+            dim date, product, customer), write 8 DAX measures (revenue, profit %, YoY growth, running total, top-N),
+            design a 2-page report with slicers and drill-through, then publish it to Power BI Service and to
+            <b>NovyPro</b> for your portfolio. Repeat the same dashboard in Tableau Public.</p>
+          <div class="tutrow">
+            <a class="ptutorial eng" href="https://codebasics.io/courses/data-analysis-projects" target="_blank">▶
+              Guided — codebasics Power BI project</a>
+            <a class="ptutorial eng" href="https://mavenanalytics.io/data-playground" target="_blank">▶ Datasets —
+              Maven Data Playground</a>
+            <a class="ptutorial eng" href="https://www.novypro.com/" target="_blank">▶ Publish — NovyPro portfolio</a>
+          </div>
+        </div>
+        <label class="check"><input type="checkbox" data-phase> Mark Phase 5 complete</label>
+      </div>
+    </section>
+
+    <!-- PHASE 6 : BUSINESS -->
+    <section class="phase" id="p6" style="--pc:var(--p6)">
+      <div class="phead">
+        <div class="pnum">6</div>
+        <div class="ptitle">
+          <h2>Business Domain &amp; Data Storytelling</h2>
+          <div class="stars">★★★★ <small>what sets you apart · ongoing</small></div>
+        </div>
+        <div class="chev">▼</div>
+      </div>
+      <div class="pbody">
+        <div class="goal"><b>Goal:</b> Tools find numbers; <b>analysts find answers</b>. Learn how a business works
+          (sales, marketing, finance, operations, HR), which KPIs matter, how to ask the right question, and how to
+          present an insight so a manager acts on it.</div>
+        <div class="videos">
+          <a class="ytbtn ar"
+            href="https://www.youtube.com/results?search_query=Mazen+Analytics+%D9%85%D8%B4%D8%A7%D8%B1%D9%8A%D8%B9+%D8%AA%D8%AD%D9%84%D9%8A%D9%84+%D8%A7%D9%84%D8%A8%D9%8A%D8%A7%D9%86%D8%A7%D8%AA&sp=EgIQAw%253D%253D"
+            target="_blank"><span class="yi"></span>مشاريع وتحليل بيزنس — Mazen Analytics <span
+              class="tag free">FREE</span></a>
+          <a class="ytbtn ar"
+            href="https://www.youtube.com/results?search_query=%D8%B3%D9%87%D9%85+%D8%A3%D9%83%D8%A7%D8%AF%D9%8A%D9%85%D9%8A+%D9%83%D9%88%D8%B1%D8%B3+%D8%AA%D8%AD%D9%84%D9%8A%D9%84+%D8%A7%D9%84%D8%A8%D9%8A%D8%A7%D9%86%D8%A7%D8%AA+%D8%B9%D9%85%D9%84%D9%8A%D8%A7"
+            target="_blank"><span class="yi"></span>كورس تحليل البيانات عمليًا (مشاريع كاملة) — سهم أكاديمي <span
+              class="tag free">FREE</span></a>
+          <a class="ytbtn" href="https://www.youtube.com/@storytellingwithdata" target="_blank"><span
+              class="yi"></span>Storytelling with Data — Cole Nussbaumer Knaflic <span class="tag free">FREE</span></a>
+          <a class="doclink ar" href="https://www.coursera.org/professional-certificates/google-data-analytics-arabic"
+            target="_blank">Google Data Analytics Certificate — النسخة العربية <span class="tag paid">PAID / Financial
+              Aid</span></a>
+          <a class="doclink" href="https://www.coursera.org/professional-certificates/google-data-analytics"
+            target="_blank">Google Data Analytics Certificate (EN) <span class="tag paid">PAID / Financial Aid</span></a>
+          <a class="doclink" href="https://www.coursera.org/professional-certificates/ibm-data-analyst"
+            target="_blank">IBM Data Analyst Certificate <span class="tag paid">PAID / Financial Aid</span></a>
+        </div>
+        <div class="grp">
+          <h3>Business metrics every analyst must know</h3>
+          <div class="chips">
+            <a class="chip" href="https://www.investopedia.com/terms/k/kpi.asp" target="_blank">KPIs</a>
+            <a class="chip" href="https://www.investopedia.com/terms/g/gross_profit_margin.asp" target="_blank">Revenue
+              vs Gross profit vs Margin</a>
+            <a class="chip" href="https://www.investopedia.com/terms/c/churnrate.asp" target="_blank">Churn rate</a>
+            <a class="chip" href="https://blog.hubspot.com/service/what-does-cac-stand-for" target="_blank">CAC &amp;
+              LTV</a>
+            <a class="chip" href="https://www.optimizely.com/optimization-glossary/conversion-rate/"
+              target="_blank">Conversion rate &amp; funnel</a>
+            <a class="chip" href="https://www.optimizely.com/optimization-glossary/cohort-analysis/"
+              target="_blank">Cohort analysis</a>
+            <a class="chip" href="https://en.wikipedia.org/wiki/RFM_(market_research)" target="_blank">RFM customer
+              segmentation</a>
+            <a class="chip" href="https://www.investopedia.com/terms/i/inventory-turnover.asp"
+              target="_blank">Inventory turnover</a>
+          </div>
+        </div>
+        <div class="grp">
+          <h3>Analytical process</h3>
+          <div class="chips">
+            <a class="chip"
+              href="https://www.coursera.org/learn/foundations-data-data-everywhere-arabic" target="_blank">Ask →
+              Prepare → Process → Analyze → Share → Act (Google, بالعربي)</a>
+            <a class="chip" href="https://www.storytellingwithdata.com/blog" target="_blank">Data storytelling blog</a>
+            <a class="chip" href="https://www.atlassian.com/blog/productivity/how-to-write-smart-goals"
+              target="_blank">SMART questions</a>
+            <a class="chip" href="https://hbr.org/2017/12/the-5-most-common-mistakes-with-data-visualization"
+              target="_blank">Common dashboard mistakes (HBR)</a>
+          </div>
+        </div>
+        <div class="note ar tip">
+          <h4>ليه الـ Phase دي بتفرق؟</h4>
+          <p>لحد هنا أنت تقدر تشتغل Junior Data Analyst مرتاح. لكن الـ Phase دي هي اللي بتفرّق بين واحد بيعرف
+            <b>يطلّع أرقام</b>، وواحد فاهم الأرقام دي <b>معناها إيه للشركة</b>.</p>
+          <p><b>مثال:</b> المدير قالك «المبيعات نزلت الشهر ده، شوف ليه». اللي بيعرف الأدوات بس هيطلّع شارت المبيعات
+            بالشهر ويقول «أيوه نزلت 12%». الـ Analyst الحقيقي هيسأل: نزلت في فرع معيّن ولا كلهم؟ في منتج معيّن؟ عدد
+            الأوردرات قل ولا متوسط الأوردر قل؟ عملاء جداد قلوا ولا القدام بطّلوا يشتروا (Churn)؟ فيه عرض خلص؟ فيه
+            منافس نزل؟ — وبعدين يطلّع <b>سبب واحد واضح</b> و<b>توصية</b>.</p>
+          <p>عشان تسأل الأسئلة دي لازم تفهم إزاي الشركة بتشتغل: دورة البيع، المخزون، التسويق، المحاسبة الأساسية. ولو
+            شغّال في شركة عندها ERP (زي ERPNext)، أنت قاعد على كنز — كل الـ Sales Invoices والـ Stock Ledger والـ
+            Payments دي بيانات حقيقية تتدرّب عليها وتطلّع منها Dashboards لشغلك فعلًا.</p>
+          <p>كورس Google هو أحسن كورس يعلّمك <b>طريقة التفكير</b> دي (مش الأدوات) — وموجود بالعربي، ولو قدّمت على
+            Financial Aid هتاخده مجانًا.</p>
+        </div>
+        <div class="note proj">
+          <h4>🎯 Practice Project — One-page insight report</h4>
+          <p>Take any dataset you already analyzed. Write a <b>one-page</b> report (Word or Google Docs): the business
+            question, 3 key findings each with one chart, and 2 concrete recommendations with expected impact. Then
+            record yourself presenting it in 3 minutes. This is exactly the take-home task most companies give in
+            interviews.</p>
+          <div class="tutrow">
+            <a class="ptutorial eng" href="https://www.storytellingwithdata.com/" target="_blank">▶ Framework —
+              Storytelling with Data</a>
+            <a class="ptutorial eng"
+              href="https://www.coursera.org/learn/google-data-analytics-capstone-complete-a-case-study-arabic"
+              target="_blank">▶ Capstone case study — Google (بالعربي)</a>
+          </div>
+        </div>
+        <label class="check"><input type="checkbox" data-phase> Mark Phase 6 complete</label>
+      </div>
+    </section>
+
+    <!-- PHASE 7 : PORTFOLIO & JOB -->
+    <section class="phase" id="p7" style="--pc:var(--p7)">
+      <div class="phead">
+        <div class="pnum">7</div>
+        <div class="ptitle">
+          <h2>Portfolio, Certifications &amp; Getting Hired</h2>
+          <div class="stars">★★★★★ <small>go pro · 4 weeks + ongoing</small></div>
+        </div>
+        <div class="chev">▼</div>
+      </div>
+      <div class="pbody">
+        <div class="goal"><b>Goal:</b> Turn skills into proof. 3–4 end-to-end projects on GitHub / Kaggle / NovyPro, a
+          sharp LinkedIn &amp; CV, one recognised certificate, and interview practice. <b>Completion target:</b> apply to
+          20 jobs with a portfolio link in every application.</div>
+        <div class="videos">
+          <a class="ytbtn" href="https://www.youtube.com/watch?v=PSNXoAs2FtQ" target="_blank"><span
+              class="yi"></span>Data Analyst Bootcamp 19h (SQL→Excel→Python→Power BI→Portfolio) — Alex The Analyst /
+            freeCodeCamp <span class="tag free">FREE</span></a>
+          <a class="ytbtn"
+            href="https://www.youtube.com/results?search_query=Alex+The+Analyst+data+analyst+portfolio+projects&sp=EgIQAw%253D%253D"
+            target="_blank"><span class="yi"></span>Portfolio Projects series — Alex The Analyst <span
+              class="tag free">FREE</span></a>
+          <a class="ytbtn" href="https://www.datawithbaraa.com/" target="_blank"><span class="yi"></span>Data
+            Warehouse &amp; EDA projects — Data With Baraa <span class="tag free">FREE</span></a>
+          <a class="ytbtn" href="https://www.youtube.com/watch?v=mAFoROnOfHs" target="_blank"><span
+              class="yi"></span>Git &amp; GitHub Crash Course — freeCodeCamp <span class="tag free">FREE</span></a>
+          <a class="ytbtn ar"
+            href="https://www.youtube.com/results?search_query=%D8%A7%D9%84%D8%B3%D9%8A%D8%B1%D8%B4%D8%AC%D9%89+CV+%D8%A5%D9%86%D8%AA%D8%B1%D9%81%D9%8A%D9%88+data+analyst"
+            target="_blank"><span class="yi"></span>CV وإنترفيو Data Analyst بالعربي — السيرشجي <span
+              class="tag free">FREE</span></a>
+          <a class="doclink" href="https://www.analystbuilder.com/" target="_blank">Analyst Builder — SQL/Python
+            interview practice (Alex) <span class="tag mix">FREEMIUM</span></a>
+          <a class="doclink" href="https://www.datacamp.com/certification" target="_blank">DataCamp Data Analyst
+            certification <span class="tag paid">PAID</span></a>
+        </div>
+        <div class="grp">
+          <h3>Where to publish your work</h3>
+          <div class="chips">
+            <a class="chip" href="https://docs.github.com/en/get-started/start-your-journey/hello-world"
+              target="_blank">GitHub (code + README)</a>
+            <a class="chip" href="https://www.kaggle.com/code" target="_blank">Kaggle notebooks</a>
+            <a class="chip" href="https://public.tableau.com/" target="_blank">Tableau Public</a>
+            <a class="chip" href="https://www.novypro.com/" target="_blank">NovyPro (Power BI)</a>
+            <a class="chip" href="https://www.linkedin.com/" target="_blank">LinkedIn (post every project)</a>
+          </div>
+        </div>
+        <div class="grp">
+          <h3>Datasets for projects</h3>
+          <div class="chips">
+            <a class="chip" href="https://mavenanalytics.io/data-playground" target="_blank">Maven Data Playground</a>
+            <a class="chip" href="https://www.kaggle.com/datasets" target="_blank">Kaggle Datasets</a>
+            <a class="chip" href="https://data.gov/" target="_blank">data.gov</a>
+            <a class="chip" href="https://www.capmas.gov.eg/" target="_blank">CAPMAS (Egypt statistics)</a>
+            <a class="chip" href="https://data.worldbank.org/" target="_blank">World Bank Open Data</a>
+          </div>
+        </div>
+        <div class="grp">
+          <h3>Certifications (pick ONE first)</h3>
+          <div class="chips">
+            <a class="chip" href="https://www.coursera.org/professional-certificates/google-data-analytics-arabic"
+              target="_blank">Google Data Analytics (Coursera)</a>
+            <a class="chip"
+              href="https://learn.microsoft.com/en-us/credentials/certifications/power-bi-data-analyst-associate/"
+              target="_blank">Microsoft PL-300 (Power BI)</a>
+            <a class="chip" href="https://www.coursera.org/professional-certificates/ibm-data-analyst" target="_blank">IBM
+              Data Analyst</a>
+            <a class="chip" href="https://www.datacamp.com/certification" target="_blank">DataCamp Certified Data
+              Analyst</a>
+          </div>
+        </div>
+        <div class="grp">
+          <h3>Job hunting &amp; interviews</h3>
+          <div class="chips">
+            <a class="chip" href="https://wuzzuf.net/search/jobs/?q=data+analyst" target="_blank">Wuzzuf — Data Analyst
+              jobs (Egypt)</a>
+            <a class="chip" href="https://www.linkedin.com/jobs/search/?keywords=data%20analyst" target="_blank">LinkedIn
+              Jobs</a>
+            <a class="chip" href="https://www.bayt.com/en/international/jobs/data-analyst-jobs/" target="_blank">Bayt
+              (Gulf)</a>
+            <a class="chip" href="https://mostaql.com/" target="_blank">Mostaql (freelance, Arabic)</a>
+            <a class="chip" href="https://www.upwork.com/" target="_blank">Upwork (freelance)</a>
+            <a class="chip" href="https://datalemur.com/" target="_blank">DataLemur — SQL interview questions</a>
+            <a class="chip" href="https://www.stratascratch.com/" target="_blank">StrataScratch — real company
+              questions</a>
+          </div>
+        </div>
+        <div class="note ar">
+          <h4>ملاحظة أخيرة</h4>
+          <p><b>3 مشاريع كويسة أحسن من 10 شهادات.</b> كل مشروع لازم يكون فيه: مشكلة بيزنس واضحة، SQL أو Python
+            للتنضيف والتحليل، Dashboard، و README بيشرح الاستنتاجات. لما تخلص مشروع انزله على LinkedIn بوست فيه صورة
+            الـ Dashboard و3 استنتاجات — ده أقوى تسويق لنفسك.</p>
+          <p><b>الشهادة:</b> لو هتدفع في حاجة واحدة بس، خليها <b>Google Data Analytics</b> (بالعربي ومتاح عليه Financial
+            Aid) أو امتحان <b>PL-300</b> لو هتتخصص في Power BI. الاتنين معروفين عند HR في مصر والخليج.</p>
+          <p><b>المدة الإجمالية:</b> لو بتذاكر 2 ساعة يوميًا هتخلص الـ Roadmap في 6–8 شهور. المهم الاستمرارية مش
+            السرعة.</p>
+        </div>
+        <div class="note proj">
+          <h4>🎯 Capstone — 3 end-to-end projects</h4>
+          <ul>
+            <li><b>Sales / E-commerce:</b> SQL extraction → Python cleaning &amp; EDA → Power BI dashboard →
+              recommendations.</li>
+            <li><b>HR Analytics:</b> attrition analysis (why employees leave), with a Tableau dashboard.</li>
+            <li><b>Your own company's data</b> (if you have access, e.g. ERPNext exports): a real problem, real
+              stakeholders — the strongest project you can have.</li>
+          </ul>
+          <div class="tutrow">
+            <a class="ptutorial eng" href="https://www.youtube.com/watch?v=PSNXoAs2FtQ" target="_blank">▶ Follow along —
+              Alex's bootcamp portfolio section</a>
+            <a class="ptutorial eng" href="https://www.datawithbaraa.com/" target="_blank">▶ Follow along — Data With
+              Baraa projects</a>
+          </div>
+        </div>
+        <label class="check"><input type="checkbox" data-phase> Mark Phase 7 complete</label>
+      </div>
+    </section>
+
+    <footer>
+      Built for a beginner Data Analyst · Arabic video: <a href="https://www.youtube.com/@ElzeroWebSchool"
+        target="_blank">Elzero</a>, Mahara-Tech (ITI), السيرشجي, Mazen Analytics · English:
+      <a href="https://www.youtube.com/@AlexTheAnalyst" target="_blank">Alex The Analyst</a>,
+      <a href="https://www.lukebarousse.com/" target="_blank">Luke Barousse</a>,
+      <a href="https://www.datawithbaraa.com/" target="_blank">Data With Baraa</a>,
+      <a href="https://www.youtube.com/@statquest" target="_blank">StatQuest</a>,
+      <a href="https://www.youtube.com/@GuyInACube" target="_blank">Guy in a Cube</a>.
+      <br>Prices change often — always check the course page before paying. Green buttons = Arabic, red = English.
+      <br>Tip: click a phase header to collapse it, and tick the boxes to track your progress (saved in your browser).
+    </footer>
+  </div>
+
+  <script>
+    // collapse/expand
+    document.querySelectorAll('.phead').forEach(h => {
+      h.addEventListener('click', () => h.parentElement.classList.toggle('collapsed'));
+    });
+    // progress (persisted in localStorage when available)
+    const boxes = [...document.querySelectorAll('input[data-phase]')];
+    const fill = document.getElementById('pf'), txt = document.getElementById('pt');
+    const KEY = 'da-roadmap-progress';
+    try {
+      const saved = JSON.parse(localStorage.getItem(KEY) || '[]');
+      boxes.forEach((b, i) => { b.checked = !!saved[i]; });
+    } catch (e) { }
+    function upd() {
+      const n = boxes.filter(b => b.checked).length;
+      fill.style.width = (n / boxes.length * 100) + '%';
+      txt.textContent = n + ' / ' + boxes.length + ' phases done';
+      try { localStorage.setItem(KEY, JSON.stringify(boxes.map(b => b.checked))); } catch (e) { }
+    }
+    boxes.forEach(b => b.addEventListener('change', e => { e.stopPropagation(); upd(); }));
+    // prevent checkbox toggling collapse
+    document.querySelectorAll('.check').forEach(l => l.addEventListener('click', e => e.stopPropagation()));
+    upd();
+  </script>
+</body>
+
+</html>
