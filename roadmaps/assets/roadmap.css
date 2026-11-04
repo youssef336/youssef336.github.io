@@ -142,7 +142,7 @@ code {
   gap: 10px;
 }
 .crumbs { display: flex; align-items: center; gap: 6px; font-size: 14px; min-width: 0; flex: 1; overflow: hidden; }
-.crumbs a { color: var(--muted); text-decoration: none; font-weight: 500; white-space: nowrap; }
+.crumbs a { color: var(--muted); text-decoration: none; font-weight: 500; white-space: nowrap; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
 .crumbs a:hover { color: var(--txt); }
 .crumbs .sep { color: var(--line-strong); }
 .crumbs .here { color: var(--txt); font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
