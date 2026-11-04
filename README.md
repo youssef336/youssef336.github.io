@@ -32,7 +32,9 @@ tagged), documentation links per topic, a practice project per phase and progres
 - Frappe / ERPNext Developer Roadmap: https://youssef336.github.io/frappe-roadmap/
 - Hub page listing both: https://youssef336.github.io/roadmaps/
 
-They share one stylesheet and script in `roadmaps/assets/` (light/dark theme, print styles, mobile layout).
+They share one stylesheet and script in `roadmaps/assets/` (light/dark theme, print styles, mobile layout,
+"next step" banner, shareable progress links like `#done=1,2,3`, per-phase resource counters, EN/AR phase titles).
+A weekly GitHub Action (`.github/workflows/link-check.yml`) checks every link and opens an issue when one breaks.
 
 ## APKs
 
