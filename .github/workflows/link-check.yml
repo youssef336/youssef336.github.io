@@ -25,7 +25,7 @@ jobs:
             --exclude-path roadmaps/assets
             --exclude "^https?://(www\.)?youtube\.com/results"
             --exclude "^mailto:"
-            index.html roadmaps/index.html data-analysis-roadmap/index.html frappe-roadmap/index.html
+            index.html roadmaps/index.html frappe-roadmap/index.html
           fail: false
           output: lychee/out.md
 

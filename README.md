@@ -28,7 +28,7 @@ Fashion Store), 12 open-source Flutter tools, more apps with APK downloads, skil
 Two beginner-friendly learning roadmaps live on the site, each with Arabic and English video courses (free and paid,
 tagged), documentation links per topic, a practice project per phase and progress saved in the browser:
 
-- Data Analyst Roadmap: https://youssef336.github.io/data-analysis-roadmap/
+- Data Analyst Roadmap: https://data-analysis-roadmap.youssef336.workers.dev/ (invite-only)
 - Frappe / ERPNext Developer Roadmap: https://youssef336.github.io/frappe-roadmap/
 - Hub page listing both: https://youssef336.github.io/roadmaps/
 
@@ -56,7 +56,7 @@ portfolio/
 ├── cv/          # downloadable CV (PDF)
 ├── images/      # project images and profile photo
 ├── roadmaps/    # roadmaps hub + shared assets (roadmap.css, roadmap.js)
-├── data-analysis-roadmap/   # Data Analyst roadmap page + og.png
+├── data-analysis-roadmap/   # redirect to the invite-only roadmap
 └── frappe-roadmap/          # Frappe / ERPNext roadmap page + og.png
 ```
 
